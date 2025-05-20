@@ -16,7 +16,7 @@ Expanded Description :
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-
+<a src= "../uml_diagram.png"> UML Diagram </a>
     
 # Intended pacing:
 
