@@ -1,7 +1,7 @@
 
 # Technical Details:
 
-Period 5 : Kayden Au & Alvaro Jenaro Hernandez
+Period 5 : Kayden Au & Alvaro Hernandez Jenaro
 
 Group Name : Pooligans
 
