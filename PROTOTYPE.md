@@ -21,15 +21,21 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 # Intended pacing:
 
-### Ball Class and Basic Collision Physics -- To be done by Tuesday, May 21st
+> Note: You have to add an x in between brackets to check off an item
+
+### Ball Class and Basic Collision Physics -- To be done by Friday, May 30th
 - [ ] Add color and number to each ball
 - [ ] Implement vector functionality
 - [ ] Add basic collision, will be done by finding the vector in between two balls when they are close enough and transfering velocity. (Assuming perfectly elastic collisions and no spin for now)
 - [ ] Add friction
 
 
-### Stick Class
-
+### Stick Class -- To be done by Wednesday, June 4th 
+- [ ] Establish an incremental way to hit a ball with differing levels of force
+- [ ] Display the current force level as a vertical bar
+- [ ] Find angle from tip of stick to cue ball
+- [ ] Apply Vector with correct force
+- [ ] Show the stick as you move it around the cue ball--will always have a direct line to the center of the cue ball
 
 ### Implement pockets with the Table Class
 
