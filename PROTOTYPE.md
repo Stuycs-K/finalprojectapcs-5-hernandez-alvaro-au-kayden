@@ -16,10 +16,23 @@ Expanded Description :
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-## UML Diagram ##
+### UML Diagram ###
 ![UML Diagram](uml_diagram.png)
 
 # Intended pacing:
+
+### Ball Class and Basic Collision Physics -- To be done by Tuesday, May 21st
+- [ ] Add color and number to each ball
+- [ ] Implement vector functionality
+- [ ] Add basic collision, will be done by finding the vector in between two balls when they are close enough and transfering velocity. (Assuming perfectly elastic collisions and no spin for now)
+- [ ] Add friction
+
+
+### Stick Class
+
+
+### Implement pockets with the Table Class
+
 
 How you are breaking down the project and who is responsible for which parts.
 
