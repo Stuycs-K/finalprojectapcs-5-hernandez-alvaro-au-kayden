@@ -12,3 +12,6 @@ Followed the questions and completed in roughly 30 minutes.
 
 ### 2024-05-20 - Wrote up the 3rd section of the prototype.
 Planned out most important steps of project, took around 40 minutes.
+
+### 2024-05-22 - Coded a draw and setup method.
+Set up first balls and background, around 30 minutes.
