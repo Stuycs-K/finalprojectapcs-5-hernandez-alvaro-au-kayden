@@ -15,4 +15,14 @@ class Ball {
    this.c = c;
    inPocket = false;
  }
+ 
+ public void show(){
+   noStroke();
+   fill(c);
+   circle(x, y, radius);
+   fill(255);
+   circle(x, y, radius / 2.5);
+   fill(0);
+   text(str(number), x-2, y+3);
+ }
 }
