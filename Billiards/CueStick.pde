@@ -1,7 +1,7 @@
 class CueStick{
  int strength;
  float x, y;
- PVector stick;
+ PVector dir;
  Ball ball; //need t0 make this a cueball eventually
  
  public CueStick(Ball cue) {
@@ -9,7 +9,7 @@ class CueStick{
    this.y = ball.y;
    strength = 5;
    ball = cue;
-   stick = new PVector(x - mouseX, y - mouseY);
+   dir = new PVector(x - mouseX, y - mouseY);
  }
  
  public void setStrength(int num){
@@ -17,10 +17,10 @@ class CueStick{
  }
  
  public void show(){
-    stick.set(x - mouseX, y - mouseY);
-    stick.normalize();
- }
- 
- 
-  
+    x = ball.x;
+    y = ball.y;
+    dir.set(x - mouseX, y - mouseY);
+    dir.normalize();
+    
+  }
 }
