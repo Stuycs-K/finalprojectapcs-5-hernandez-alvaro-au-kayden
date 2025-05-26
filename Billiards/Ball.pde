@@ -35,7 +35,7 @@ class Ball {
   acceleration.set(0, 0);
  }
  
- public void bounce() {
+ public void bounceCollide(ArrayList<Ball> balls) {
     //This can introduce/remove energy from the system because of small "teleportations".
     if (position.x < radius)
       velocity.x = abs(velocity.x);
@@ -45,5 +45,10 @@ class Ball {
       velocity.y = abs(velocity.y);
     if (position.y > height-radius)
       velocity.y= -1 * abs(velocity.y);
+     
+    // loop through ball list to check collisions
+    //for (Ball : balls) {
+      
+    //}
   }
 }

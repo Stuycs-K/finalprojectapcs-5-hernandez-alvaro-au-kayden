@@ -23,5 +23,7 @@ void draw() {
     background(2, 48, 32);
     for (Ball b : ballList) {
         b.show();
+        b.move();
+        b.bounceCollide(ballList);  
     }
 }
