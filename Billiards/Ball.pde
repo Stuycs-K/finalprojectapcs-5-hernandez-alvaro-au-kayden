@@ -4,8 +4,6 @@ class Ball {
  color c;
  int number;
  boolean inPocket;
- float mass;
- 
  
  public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c) {
    position = new PVector(x, y);
@@ -15,7 +13,6 @@ class Ball {
    number = num;
    this.c = c;
    inPocket = false;
-   mass = 100;
  }
  
  public void show(){
@@ -61,24 +58,28 @@ public void bounce() {
   }
   
   public void collide(ArrayList<Ball> list) {
-    // minimum distance between two balls
-    float min = radius * 2;
-    
     // loop through the ball list
     for (Ball b : list) {
-      if (PVector.dist(this.position, b.position) < min) {
-        
-        // find the direction
-        PVector dir = position.sub(b.position).normalize();
-        
-        // inelastic collision magnitude
-        float mag = mass * (velocity.mag() + b.velocity.mag()) / (2 * mass);
-        
-        // 
-        PVector finalVelo = dir.copy().setMag(mag);
-        velocity.set(finalVelo);
-        b.velocity.set(finalVelo.mult(-1));
-      }
+      collideHelper(b);
+    }
+  }
+  
+  public void collideHelper(Ball other) {
+    if (PVector.dist(position, other.position) < radius * 2) {
+      
+      // find the direction of the new velocity vector
+      PVector newDir = PVector.sub(this.position, other.position).normalize();
+      PVector veloValue = PVector.sub(velocity, other.velocity);
+      
+      // new velocity magnitude
+      float newVelo = veloValue.dot(newDir);
+  
+      // calculate impulse value
+      float impulse = -(1.2) * newVelo / 2;
+      PVector vector = PVector.mult(newDir, impulse);
+      
+      velocity.sub(vector);
+      other.velocity.add(vector);
     }
   }
 }

@@ -31,6 +31,6 @@ void draw() {
         b.show();
         b.move();
         b.bounce();
-        //b.collide(ballList);
+        b.collide(ballList);
     }
 }
