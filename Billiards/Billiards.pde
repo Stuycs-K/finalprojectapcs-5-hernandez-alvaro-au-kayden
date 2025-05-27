@@ -9,7 +9,7 @@ void setup() {
     if (i > 1){
       row = 1;
     }
-    ballList.add(new Ball(220 + row*30*pow(-1, i +1), 160 - row * 50, 10, 10, 30, i, color(255, 0, 0)));  
+    ballList.add(new Ball(220 + row*30*pow(-1, i +1), 160 - row * 50, 10, 10, 20, i, color(255, 0, 0)));  
   }
 }
 void mouseClicked() {
@@ -24,6 +24,7 @@ void draw() {
     for (Ball b : ballList) {
         b.show();
         b.move();
-        b.bounceCollide(ballList);  
+        b.bounce();
+        //b.collide(ballList);
     }
 }
