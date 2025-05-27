@@ -24,6 +24,10 @@ class CueStick{
 
     x -= dir.x * 55;
     y -= dir.y * 55;
-    circle(x, y, 20);
+    fill(144, 238, 144);
+    circle(x, y, 15);
+    fill(255,255,255);
+    //rotate(PI/5.0);
+    rect(x-7.5, y, 15, 20);
   }
 }
