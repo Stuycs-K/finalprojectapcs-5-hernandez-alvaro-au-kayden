@@ -1,4 +1,6 @@
 
+
+
 # Technical Details:
 
 Period 5 : Kayden Au & Alvaro Hernandez Jenaro
@@ -6,18 +8,19 @@ Period 5 : Kayden Au & Alvaro Hernandez Jenaro
 Group Name : Pooligans
 
 Brief Project Description :
-    A repilicate of the hit game 8-Ball/Billiards. This will include the use of the cue stick to hit balls, motion and collision of balls within the bounds of the board, and also the solid/stripes rule based system. Additionally, there will also include a turn based system between two players, and a tracker for the number of balls. 
+    A replicate of the hit game 8-Ball/Billiards. This will include the use of the cue stick to hit balls, motion and collision of balls within the bounds of the board, and also the solid/stripes rule based system. Additionally, there will also include a turn based system between two players, and a tracker for the number of balls.
 
 Expanded Description :
     Critical Features - visible board, cue stick, balls ; basic 2D collision and projectile motion ; established rule set between stripes and solids, which player is which   
     Nice to have Features - spin on the cue ball ; motion and collision using 3D sphere physics
-     
+
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
 ### UML Diagram ###
-![UML Diagram](uml_diagram.png)
+![UML Diagram](uml.png)
+
 
 # Intended pacing:
 
@@ -57,4 +60,3 @@ Kayden will work on the physics behind the game.
 - [ ] Initialize the game in the correct way:
 ![image](https://github.com/user-attachments/assets/3e87d1c2-1734-445a-89ba-500da1f44dee)
 ^ Initial state of game
-
