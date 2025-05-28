@@ -21,3 +21,6 @@ About 30 minutes.
 
 ### 2025-05-27
 Working on collisions. Friction works, but the logic for collisions doesn't checkout, need to work on that and research it more. Spent class time on it so about 40 minutes.
+
+### 2025-05-28
+Working on the starting position of the balls and the table class. Need to figure out the center to center distance of the diagonal balls as well as the center to center distance between adjacent balls. Need to find the true center for each ball and also the cue ball.
