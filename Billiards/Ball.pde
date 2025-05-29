@@ -36,10 +36,6 @@ class Ball {
         // center align the rectangle to (x, y)
         rectMode(CENTER);
         rect(position.x, position.y, (float) radius * 2, radius * 0.90);
-        
-        // if striped, need small white circle so the number is shown easier
-        fill(255);
-        circle(position.x, position.y, (float) radius);
       }
       else {
         // make the colored circle
@@ -48,10 +44,15 @@ class Ball {
         circle(position.x, position.y, (float)radius*2);
       }
       
+      // if striped, need small white circle so the number is shown easier
+      fill(255);
+      circle(position.x, position.y, (float) radius);
+        
       // write the number
       fill(0);
       textAlign(CENTER, CENTER);
       textSize(10);
+      text
       text(number, position.x, position.y);
     }
   }
