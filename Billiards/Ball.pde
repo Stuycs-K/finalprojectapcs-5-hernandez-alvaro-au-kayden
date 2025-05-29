@@ -22,8 +22,8 @@ class Ball {
 
   public void show() {
     if (!inPocket) {
+      
       if (striped) {
-        
         // make the white circle
         fill(255);
         noStroke();
@@ -32,9 +32,14 @@ class Ball {
         // draw the colored stripe
         fill(c);
         noStroke();
-        rectMode(CENTER);
-        rect(position.x, position.y, (float) radius * 2, radius * 0.75);
         
+        // center align the rectangle to (x, y)
+        rectMode(CENTER);
+        rect(position.x, position.y, (float) radius * 2, radius * 0.90);
+        
+        // if striped, need small white circle so the number is shown easier
+        fill(255);
+        circle(position.x, position.y, (float) radius);
       }
       else {
         // make the colored circle
@@ -42,6 +47,12 @@ class Ball {
         noStroke();
         circle(position.x, position.y, (float)radius*2);
       }
+      
+      // write the number
+      fill(0);
+      textAlign(CENTER, CENTER);
+      textSize(10);
+      text(number, position.x, position.y);
     }
   }
 
