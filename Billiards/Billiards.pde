@@ -33,4 +33,6 @@ void draw() {
         b.collide(ballList);
     }
     stick.show();
+    cueBall.move();
+    cueBall.bounce();
 }

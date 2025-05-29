@@ -60,6 +60,7 @@ class CueStick{
   }
   
   public void strike(){
-    ball.velocity.add(dir.mult(strength));
+    dir.mult(strength);
+    ball.acceleration.add(dir);
   }
 }
