@@ -60,6 +60,7 @@ void setup() {
   //  ballList.add(new Ball(220 + row*30*pow(-1, i +1), 160 - row * 50, 10, 10, 20, i, color(255, 0, 0)));  
   //}
   cueBall = new Ball(250.0, 700.0 ,0, 0, 20, 0, color(255,255,255)); 
+  ballList.add(cueBall);
   stick = new CueStick(cueBall);
 }
 void mouseClicked() {
