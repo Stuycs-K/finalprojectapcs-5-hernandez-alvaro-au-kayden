@@ -30,12 +30,12 @@ void setup() {
   
   float startX = width / 2;
   float startY = height * 0.3;
-  float radius = 20.0;
+  float radius = 15.0;
   
   int[] diagonalNums = new int[] {1, 2, 4, 7, 11};
   
   // diagonal framework for the rows
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 5; i++) {
    int[] c = colorList.get(i);
    float x = startX - (i * radius * 2 * 0.866); 
    float y = startY - (i * radius * 2);
@@ -49,22 +49,12 @@ void setup() {
     
   }
   
-  
-  //ballList.add(new Ball(startX, startY, 0, 0, 20, 1, color(255, 0, 0)));
-  //for (int i = 0; i <
-  //for (int i = 1; i < 4; i++){
-  //  int row = 0;
-  //  if (i > 1){
-  //    row = 1;
-  //  }
-  //  ballList.add(new Ball(220 + row*30*pow(-1, i +1), 160 - row * 50, 10, 10, 20, i, color(255, 0, 0)));  
-  //}
-  cueBall = new Ball(250.0, 700.0 ,0, 0, 20, 0, color(255,255,255)); 
+  cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255)); 
   ballList.add(cueBall);
   stick = new CueStick(cueBall);
 }
 void mouseClicked() {
-      stick.strike();
+  stick.strike();
 }
 
 void keyPressed() {

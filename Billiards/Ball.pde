@@ -4,6 +4,7 @@ class Ball {
   color c;
   int number;
   boolean inPocket;
+  boolean striped;
 
   public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c) {
     position = new PVector(x, y);
@@ -13,16 +14,34 @@ class Ball {
     number = num;
     this.c = c;
     inPocket = false;
+    
+    if (num >= 9 && num <= 15) {
+      striped = true;
+    }
   }
 
   public void show() {
     if (!inPocket) {
-      fill(c);
-      noStroke();
-      circle(position.x, position.y, (float)radius*2);
-      fill(0);
-      text(str(number), position.x-5, position.y+5);
-      textSize(20);
+      if (striped) {
+        
+        // make the white circle
+        fill(255);
+        noStroke();
+        circle(position.x, position.y, (float) radius * 2);
+        
+        // draw the colored stripe
+        fill(c);
+        noStroke();
+        rectMode(CENTER);
+        rect(position.x, position.y, (float) radius * 2, radius * 0.75);
+        
+      }
+      else {
+        // make the colored circle
+        fill(c);
+        noStroke();
+        circle(position.x, position.y, (float)radius*2);
+      }
     }
   }
 
@@ -77,7 +96,7 @@ class Ball {
       float newVelo = veloValue.dot(newDir);
 
       // calculate impulse value using COR (coefficient of restituion ; the 1 + x)
-      float impulse = -(1.2) * newVelo / 2;
+      float impulse = -(1) * newVelo / 2;
       PVector vector = PVector.mult(newDir, impulse);
   
       // apply oppositely to balls so they move opposite
