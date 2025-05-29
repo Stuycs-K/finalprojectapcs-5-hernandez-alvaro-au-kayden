@@ -60,7 +60,9 @@ class CueStick{
   }
   
   public void strike(){
-    dir.mult(strength);
-    ball.acceleration.add(dir);
+    if (ball.velocity.mag() < 0.01){
+      dir.mult(strength);
+      ball.acceleration.add(dir);
+    }
   }
 }
