@@ -28,6 +28,11 @@ class CueStick{
     circle(x, y, 15);
     fill(255,255,255);
     //rotate(PI/5.0);
-    rect(x-7.5, y, 15, 20);
+    float angle = atan(dir.y / abs(dir.x));
+    print(degrees(angle));
+    float a = cos(angle) * 2;
+    float b = sin(angle) * 2;
+  
+    quad(x+10*b, y-10*a, x-10*b, y+10*a, x-10*b+20*a, y+10*a+20*b, x+10*b+20*a, y-10*a+20*b);
   }
 }
