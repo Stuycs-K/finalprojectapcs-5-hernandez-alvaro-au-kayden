@@ -24,3 +24,6 @@ Working on collisions. Friction works, but the logic for collisions doesn't chec
 
 ### 2025-05-28
 Working on the starting position of the balls and the table class. Need to figure out the center to center distance of the diagonal balls as well as the center to center distance between adjacent balls. Need to find the true center for each ball and also the cue ball. About 30 or 40 minutes.
+
+### 2025-05-29
+Short working session to adjust stripes and solid balls and also the numbering of the balls. About 15 minutes.
