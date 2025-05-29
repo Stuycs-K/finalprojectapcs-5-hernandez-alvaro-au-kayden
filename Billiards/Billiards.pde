@@ -5,7 +5,7 @@ Ball cueBall;
 CueStick stick;
 
 void setup() {
-  size(500, 1000);
+  size(528, 928);
   ballList = new ArrayList<Ball>();
   colorList = new ArrayList<int[]>(8);
   
@@ -62,6 +62,11 @@ void keyPressed() {
 }
 void draw() {
     background(2, 48, 32);
+    fill(137, 81, 41);
+    rect(264,32, 528, 64);
+    rect(264, 896, 528, 64);
+    rect(32, 464, 64, 928);
+    rect(498, 464, 64, 928);
     cueBall.show();
     for (Ball b : ballList) {
         b.show();
