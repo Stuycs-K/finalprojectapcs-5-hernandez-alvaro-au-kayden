@@ -18,3 +18,6 @@ About 30 minutes.
 Completed Part 2 of the Prototype, the UML Diagram. Had to figure out what it consisted of so did some small research and found a website that had templates. 
 
 About 30 minutes.
+
+### 2025-05-27
+Working on collisions. Friction works, but the logic for collisions doesn't checkout, need to work on that and research it more. Spent class time on it so about 40 minutes.
