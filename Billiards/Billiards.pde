@@ -17,7 +17,7 @@ void setup() {
   stick = new CueStick(cueBall);
 }
 void mouseClicked() {
-  //to be added
+      stick.strike();
 }
 
 void keyPressed() {
@@ -26,11 +26,15 @@ void keyPressed() {
 void draw() {
     background(2, 48, 32);
     cueBall.show();
-    stick.show();
     for (Ball b : ballList) {
         b.show();
         b.move();
         b.bounce();
         b.collide(ballList);
     }
+    if (cueBall.velocity.mag() < 0.01){
+      stick.show();
+    }
+    cueBall.move();
+    cueBall.bounce();
 }
