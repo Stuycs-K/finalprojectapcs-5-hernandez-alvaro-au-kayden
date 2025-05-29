@@ -17,7 +17,7 @@ void setup() {
   stick = new CueStick(cueBall);
 }
 void mouseClicked() {
-  //to be added
+      stick.strike();
 }
 
 void keyPressed() {
@@ -26,8 +26,8 @@ void keyPressed() {
 void draw() {
     background(2, 48, 32);
     cueBall.show();
-    stick.show();
     for (Ball b : ballList) {
         b.show();
     }
+    stick.show();
 }
