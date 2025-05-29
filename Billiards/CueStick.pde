@@ -41,14 +41,21 @@ class CueStick{
       x+w*b-h*a,  y-w*a-h*b);
     fill(196, 164, 132);
     float w2 = 7.5/2;
-    float h2 = 160;
-    float w3 = 7.5/2 + 2;
+    float h2 = 100;
+    float w3 = 7.5/2 + 1;
     quad(
       x-w2*b-h*a,  y+w2*a-h*b, 
       x+w2*b-h*a,  y-w2*a-h*b,
       x+w3*b-h*a-h2*a,  y-w3*a-h*b-h2*b,
       x-w3*b-h*a-h2*a,  y+w3*a-h*b-h2*b);
     fill(92, 64, 51);
-    
+    float w4 = w3+1;
+    float h3 = 60;
+    quad(
+      x+w3*b-h*a-h2*a,  y-w3*a-h*b-h2*b,
+      x-w3*b-h*a-h2*a,  y+w3*a-h*b-h2*b,
+      x-w4*b-h*a-h2*a-h3*a,  y+w4*a-h*b-h2*b-h3*b,
+      x+w4*b-h*a-h2*a-h3*a,  y-w4*a-h*b-h2*b-h3*b);
+    circle(x-h*a-h2*a-h3*a, y-h*b-h2*b-h3*b, 24);
   }
 }
