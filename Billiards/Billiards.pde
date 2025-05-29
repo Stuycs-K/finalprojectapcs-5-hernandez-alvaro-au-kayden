@@ -32,7 +32,9 @@ void draw() {
         b.bounce();
         b.collide(ballList);
     }
-    stick.show();
+    if (cueBall.velocity.mag() < 0.01){
+      stick.show();
+    }
     cueBall.move();
     cueBall.bounce();
 }
