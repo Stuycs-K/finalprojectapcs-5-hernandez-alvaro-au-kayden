@@ -52,7 +52,6 @@ class Ball {
       fill(0);
       textAlign(CENTER, CENTER);
       textSize(10);
-      text
       text(number, position.x, position.y);
     }
   }
