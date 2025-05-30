@@ -50,7 +50,6 @@ void setup() {
    // number from arraylist
    int number = diagonalNums[i];
    
-   int[] c = colorList.get(i);
    
     ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
   }

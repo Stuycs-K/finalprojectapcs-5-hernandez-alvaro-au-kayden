@@ -78,13 +78,13 @@ class Ball {
   }
 
   public void bounce() {
-    if (position.x < radius)
+    if (position.x < 70)
       velocity.x = abs(velocity.x * 0.9);
-    if (position.x > width-radius)
+    if (position.x > width-70)
       velocity.x= -1 * abs(velocity.x * 0.9);
-    if (position.y < radius)
+    if (position.y < 70)
       velocity.y = abs(velocity.y * 0.9);
-    if (position.y > height-radius)
+    if (position.y > height-70)
       velocity.y= -1 * abs(velocity.y * 0.9);
   }
 
