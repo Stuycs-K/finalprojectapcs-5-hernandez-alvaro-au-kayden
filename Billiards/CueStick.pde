@@ -7,7 +7,7 @@ class CueStick{
  public CueStick(Ball cue) {
    this.x = cue.position.x;
    this.y = cue.position.y;
-   strength = 5;
+   strength = 20;
    ball = cue;
    dir = new PVector(x - mouseX, y - mouseY);
  }
