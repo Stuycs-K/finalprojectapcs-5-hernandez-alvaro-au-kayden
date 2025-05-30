@@ -15,7 +15,9 @@ class Table {
   public void display() {
     
     // setting up the borders and the display
-    background(2, 48, 32);
+    fill(2, 48, 32);
+    rect(256, 456, 512, 912);
+    
     fill(137, 81, 41);
     //brown border
     rect(256, 28, 512, 56);

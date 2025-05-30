@@ -3,11 +3,12 @@ ArrayList<int[]>colorList;
 ArrayList<Ball>stripes;
 ArrayList<Ball>solids;
 Table t1;
+StrengthBar strengthB;
 Ball cueBall;
 CueStick stick;
 
 void setup() {
-  size(512, 912);
+  size(592, 912);
   ballList = new ArrayList<Ball>();
   colorList = new ArrayList<int[]>(8);
   stripes = new ArrayList<Ball>(7);
@@ -21,7 +22,7 @@ void setup() {
   stick = new CueStick(cueBall);
 
   t1 = new Table(width, height, cueBall, stick);
-
+  strengthB = new StrengthBar(stick);
   // fill the colorList with the colors in order
   // yellow
   colorList.add(new int[] {255, 255, 0});
@@ -79,5 +80,6 @@ void mouseClicked() {
 }
 
 void draw() {
+    strengthB.display();
     t1.display();
 }
