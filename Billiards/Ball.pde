@@ -5,6 +5,7 @@ class Ball {
   int number;
   boolean inPocket;
   boolean striped;
+  float mass;
 
   public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c) {
     position = new PVector(x, y);
@@ -14,7 +15,8 @@ class Ball {
     number = num;
     this.c = c;
     inPocket = false;
-    
+    mass = 0.17;
+
     if (num >= 9 && num <= 15) {
       striped = true;
     }
@@ -22,32 +24,31 @@ class Ball {
 
   public void show() {
     if (!inPocket) {
-      
+
       if (striped) {
         // make the white circle
         fill(255);
         noStroke();
         circle(position.x, position.y, (float) radius * 2);
-        
+
         // draw the colored stripe
         fill(c);
         noStroke();
-        
+
         // center align the rectangle to (x, y)
         rectMode(CENTER);
         rect(position.x, position.y, (float) radius * 2, radius * 0.90);
-      }
-      else {
+      } else {
         // make the colored circle
         fill(c);
         noStroke();
         circle(position.x, position.y, (float)radius*2);
       }
-      
+
       // if striped, need small white circle so the number is shown easier
       fill(255);
       circle(position.x, position.y, (float) radius);
-        
+
       // write the number
       fill(0);
       textAlign(CENTER, CENTER);
@@ -77,14 +78,14 @@ class Ball {
   }
 
   public void bounce() {
-    if (position.x < radius)
-      velocity.x = abs(velocity.x);
-    if (position.x > width-radius)
-      velocity.x= -1 * abs(velocity.x);
-    if (position.y < radius)
-      velocity.y = abs(velocity.y);
-    if (position.y > height-radius)
-      velocity.y= -1 * abs(velocity.y);
+    if (position.x < 70)
+      velocity.x = abs(velocity.x * 0.9);
+    if (position.x > width-70)
+      velocity.x= -1 * abs(velocity.x * 0.9);
+    if (position.y < 70)
+      velocity.y = abs(velocity.y * 0.9);
+    if (position.y > height-70)
+      velocity.y= -1 * abs(velocity.y * 0.9);
   }
 
   public void collide(ArrayList<Ball> list) {
@@ -95,10 +96,12 @@ class Ball {
   }
 
   public void collideHelper(Ball other) {
-    if (PVector.dist(position, other.position) < radius * 2) {
-
-      // find the direction of the new velocity vector
-      PVector newDir = PVector.sub(this.position, other.position).normalize();
+    float distance = PVector.dist(position, other.position);
+    if (distance < radius * 2 && distance > 0) {
+      
+      // find the direction of the new vector
+      PVector newDir = PVector.sub(this.position, other.position);
+      newDir.normalize();
 
       // find the velocity vector between the two balls
       PVector veloValue = PVector.sub(velocity, other.velocity);
@@ -106,10 +109,12 @@ class Ball {
       // new velocity magnitude using dot product
       float newVelo = veloValue.dot(newDir);
 
-      // calculate impulse value using COR (coefficient of restituion ; the 1 + x)
-      float impulse = -(1) * newVelo / 2;
+      // calculate impulse value using the new velocity, dividing by two to split the energy, and multiply by a constant < 1.0 to decrease some energy 
+      float impulse = -(0.2) * newVelo / 2;
+      
+      // new vector is the direction multiplied by impulse value
       PVector vector = PVector.mult(newDir, impulse);
-  
+
       // apply oppositely to balls so they move opposite
       velocity.sub(vector);
       other.velocity.add(vector);
