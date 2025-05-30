@@ -40,11 +40,15 @@ class Table {
     xPock = 36;
     quad(xPock+18*sin(PI/4), yPock+18*sin(PI/4), xPock-18*sin(PI/4), yPock-18*sin(PI/4), xPock+48, yPock-48-36*sin(PI/4), xPock+(48+sin(PI/4)*36), yPock-48-36*sin(PI/4)+sin(PI/4)*36);
     
+    quad(36, 456-18, 36, 456+18, 56, 456+20.5, 56, 456-20.5);
+    quad(476, 456-18, 476, 456+18, 512-56, 456+20.5, 512-56, 456-20.5);
     fill(0);
     circle(36, 36, 36);
     circle(476, 36, 36);
     circle(476, 876, 36);
     circle(36, 876, 36);
+    circle(36, 456, 36);
+    circle(476, 456, 36);
     fill(255);
     boolean ballsMoving = false;
     // general loop for updating the balls
