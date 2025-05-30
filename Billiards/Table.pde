@@ -13,7 +13,6 @@ class Table {
   }
   
   public void display() {
-    
     // setting up the borders and the display
     fill(2, 48, 32);
     rect(256, 456, 512, 912);
@@ -75,7 +74,7 @@ class Table {
     }
     cueBall.move();
     cueBall.bounce();
-  }
+    }
   
   public void addBalls(Ball b) {
    balls.add(b);
