@@ -77,9 +77,11 @@ void draw() {
     rect(48, 456, 16, 912-96);
     rect(464, 456, 16, 912-96);
 
-
+    fill(2, 48, 32);
+    quad(36+18*sin(PI/4), 36-18*sin(PI/4), 36-18*sin(PI/4), 36+18*sin(PI/4), 36+48, 36+48+36*sin(PI/4), 36+48+sin(PI/4)*36, 36+48+36*sin(PI/4)-sin(PI/4)*36);
     fill(0);
-    circle(56, 56, 10);
+    circle(36, 36, 36);
+    
     cueBall.show();
     for (Ball b : ballList) {
         b.show();
