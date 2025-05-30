@@ -80,6 +80,6 @@ void mouseClicked() {
 }
 
 void draw() {
-    t1.display();
     strengthB.display();
+    t1.display();
 }
