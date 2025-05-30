@@ -27,3 +27,8 @@ Working on the starting position of the balls and the table class. Need to figur
 
 ### 2025-05-29
 Short working session to adjust stripes and solid balls and also the numbering of the balls. About 15 minutes.
+
+Worked in class on ball positions, still need to redo the logic for the loop. Changes to the detection for bouncing but need to find out how to detect the hole. About 40 minutes.
+
+Completed the intial ball positions, still need to move 8 ball to the center but other than that it works fine. About 30 minutes. 
+
