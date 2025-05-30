@@ -36,27 +36,39 @@ void setup() {
   colorList.add(new int[] {0, 255, 0});
   // brown / maroon
   colorList.add(new int[] {196, 164, 132});
-  // black
-  colorList.add(new int[] {0, 0, 0});
   
   int[] diagonalNums = new int[] {1, 2, 4, 7, 11};
   
   // diagonal framework for the rows
   for (int i = 0; i < 5; i++) {
-   int[] c = colorList.get(i);
-   
    // equilateral triangle spacing between the centers
    float x = startX - (i * radius * 1.5 * 0.866); 
    float y = startY - (i * radius * 1.5);
+   
+   // number from arraylist
    int number = diagonalNums[i];
+   
+   int[] c = colorList.get(i);
+   
     ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
   }
+  //int counter = 1;
+  //for (int i = 0; i < 5; i++) {
+  //   for (int j = 0; j < counter; j++) {
+  //     float x = startX - (i * radius * 1.5 * 0.866); 
+  //     float y = startY - (i * radius * 1.5);
+       
+  //     // get the number
+  //     int number = counter + j;
+       
+  //     int[] c = colorList.get(counter);
+  //     if(number == 8) c = new int[] {0, 0, 0};
+  //     ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
+  //  }
+  //  counter++;
+  //}
   
-  for (int i = 0; i < 4; i++) {
-    
-    
-    
-  }
+  
   
   
 }
@@ -65,5 +77,5 @@ void mouseClicked() {
 }
 
 void draw() {
-    t1.display();
+   t1.display();
 }
