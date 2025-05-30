@@ -16,8 +16,14 @@ class StrengthBar{
     circle(552, 200, 50);
     circle(552, 712, 50);
     rect(552, 456, 50, 512);
+    int x1 = 527;
+    int x2 = 577;
+    for (int y = 622; y > 200; y -= 90){
+       line(x1, y, x2, y); 
+    }
     noStroke();
     circle(552.5, 200, 49);
     circle(552.5, 712, 49);
+    
   }
 }
