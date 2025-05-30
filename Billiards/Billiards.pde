@@ -9,9 +9,8 @@ void setup() {
   ballList = new ArrayList<Ball>();
   colorList = new ArrayList<int[]>(8);
 
-  float startX = width / 2;
-  float startY = height * 0.3;
-  float radius = 15.0;
+  
+  float radius = 12.5;
 
   cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255));
   ballList.add(cueBall);
@@ -37,41 +36,32 @@ void setup() {
   // black
   colorList.add(new int[] {0, 0, 0});
 
-  int[] diagonalNums = new int[] {1, 2, 4, 7, 11};
-
-  // diagonal framework for the rows
-  for (int i = 0; i < 5; i++) {
-   int[] c = colorList.get(i);
-
-   // equilateral triangle spacing between the centers
-   float x = startX - (i * radius * 1.5 * 0.866);
-   float y = startY - (i * radius * 1.5);
-   
-   // number from arraylist
-   int number = diagonalNums[i];
-   
-   
-    ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
+  // initial starting points for the first ball
+  float startX = width / 2;
+  float startY = height * 0.3;
+  
+  // other vars needed
+  int rows = 5;
+  int number = 1;
+  
+  float ballSpace = radius * 2 + 1;
+  float rowHeight = sqrt(3) / 2 * ballSpace;       // sqrt(3) / 2 because the centers form 60 deg angles ; sin 60 deg is sqrt3/2
+  
+  
+  for (int r = 0; r < rows; r++) {
+    int balls = r + 1;       // each consecutive row has one more than the last (1, 2, 3, 4, 5)
+    float offset = -(balls - 1) * ballSpace / 2;       // to center the balls, you need the leftmost ball to move multiples of half a space; ie if 2 balls, they need to be shifted 1/2 over, if 3 balls, 1 ball over, etc...
+    float y = startY - (r * rowHeight);
+    
+    for (int col = 0; col < balls; col++) {
+      int[] c = colorList.get(number % 7);
+      if (number == 8) c = new int[] {0, 0, 0};
+      float x = startX + offset + (col * ballSpace);     // take inital spot, offset it, then add the spacing between each ball depending on which ball it is (1st, 2nd)
+      ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
+      number++;
+      
+    }
   }
-  //int counter = 1;
-  //for (int i = 0; i < 5; i++) {
-  //   for (int j = 0; j < counter; j++) {
-  //     float x = startX - (i * radius * 1.5 * 0.866); 
-  //     float y = startY - (i * radius * 1.5);
-       
-  //     // get the number
-  //     int number = counter + j;
-       
-  //     int[] c = colorList.get(counter);
-  //     if(number == 8) c = new int[] {0, 0, 0};
-  //     ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
-  //  }
-  //  counter++;
-  //}
-  
-  
-  
-  
 }
 void mouseClicked() {
   stick.strike();
