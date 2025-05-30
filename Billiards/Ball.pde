@@ -5,7 +5,6 @@ class Ball {
   int number;
   boolean inPocket;
   boolean striped;
-  float mass;
 
   public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c) {
     position = new PVector(x, y);
@@ -15,7 +14,6 @@ class Ball {
     number = num;
     this.c = c;
     inPocket = false;
-    mass = 0.17;
 
     if (num >= 9 && num <= 15) {
       striped = true;
@@ -78,14 +76,15 @@ class Ball {
   }
 
   public void bounce() {
-    if (position.x < 70)
-      velocity.x = abs(velocity.x * 0.9);
-    if (position.x > width-70)
-      velocity.x= -1 * abs(velocity.x * 0.9);
-    if (position.y < 70)
-      velocity.y = abs(velocity.y * 0.9);
-    if (position.y > height-70)
-      velocity.y= -1 * abs(velocity.y * 0.9);
+    // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
+    if (position.x < 56 + radius)
+      velocity.x = abs(velocity.x * 0.85);
+    if (position.x > width - (56 + radius))
+      velocity.x= -1 * abs(velocity.x * 0.85);
+    if (position.y < 56 + radius)
+      velocity.y = abs(velocity.y * 0.85);
+    if (position.y > height - (56 + radius))
+      velocity.y= -1 * abs(velocity.y * 0.85);
   }
 
   public void collide(ArrayList<Ball> list) {

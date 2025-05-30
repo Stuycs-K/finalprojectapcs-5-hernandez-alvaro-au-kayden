@@ -1,5 +1,7 @@
 ArrayList<Ball>ballList;
 ArrayList<int[]>colorList;
+ArrayList<Ball>stripes;
+ArrayList<Ball>solids;
 Table t1;
 Ball cueBall;
 CueStick stick;
@@ -8,6 +10,8 @@ void setup() {
   size(512, 912);
   ballList = new ArrayList<Ball>();
   colorList = new ArrayList<int[]>(8);
+  stripes = new ArrayList<Ball>(7);
+  solids = new ArrayList<Ball>(7);
 
   
   float radius = 12.5;
@@ -57,7 +61,14 @@ void setup() {
       int[] c = colorList.get(number % 7);
       if (number == 8) c = new int[] {0, 0, 0};
       float x = startX + offset + (col * ballSpace);     // take inital spot, offset it, then add the spacing between each ball depending on which ball it is (1st, 2nd)
-      ballList.add(new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2])));
+      Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]));
+      ballList.add(b);
+      if (number >= 0 && number < 8) {
+        solids.add(b);
+      }
+      else if (number !=8) {
+        stripes.add(b);
+      }
       number++;
       
     }
