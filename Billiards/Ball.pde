@@ -66,7 +66,9 @@ class Ball {
 
     // friction
     velocity.mult(0.98);
-    if (velocity.mag() < 0.01) velocity.set(0, 0);
+    if (velocity.mag() < 0.01) {
+      velocity.set(0, 0);
+    }
   }
 
   public void pocket() {
@@ -97,26 +99,41 @@ class Ball {
   public void collideHelper(Ball other) {
     float distance = PVector.dist(position, other.position);
     if (distance < radius * 2 && distance > 0) {
+      // inelastic collision with impulse Jn = 0.5 * (1 + 0.9)(other velo - this velo) * normal vector
       
-      // find the direction of the new vector
-      PVector newDir = PVector.sub(this.position, other.position);
-      newDir.normalize();
-
-      // find the velocity vector between the two balls
-      PVector veloValue = PVector.sub(velocity, other.velocity);
-
-      // new velocity magnitude using dot product
-      float newVelo = veloValue.dot(newDir);
-
-      // calculate impulse value using the new velocity, dividing by two to split the energy, and multiply by a constant < 1.0 to decrease some energy 
-      float impulse = -(0.2) * newVelo / 2;
+      PVector normal = position.sub(other.position).normalize(); 
       
-      // new vector is the direction multiplied by impulse value
-      PVector vector = PVector.mult(newDir, impulse);
-
-      // apply oppositely to balls so they move opposite
-      velocity.sub(vector);
-      other.velocity.add(vector);
+      float jN = 0.5 * (1+ 0.9) *(velocity.sub(other.velocity)).dot(normal);
+      
+      // final velocities v1 = Jn / (1.0) * n
+      
+      velocity.add(PVector.mult(normal, jN));
+      other.velocity = PVector.mult(normal, -1 * jN);
     }
+    
+    
+    //float distance = PVector.dist(position, other.position);
+    //if (distance < radius * 2 && distance > 0) {
+      
+    //  // find the direction of the new vector
+    //  PVector newDir = PVector.sub(this.position, other.position);
+    //  newDir.normalize();
+
+    //  // find the velocity vector between the two balls
+    //  PVector veloValue = PVector.sub(velocity, other.velocity);
+
+    //  // new velocity magnitude using dot product
+    //  float newVelo = veloValue.dot(newDir);
+
+    //  // calculate impulse value using the new velocity, dividing by two to split the energy, and multiply by a constant < 1.0 to decrease some energy 
+    //  float impulse = -(0.1) * newVelo / 2;
+      
+    //  // new vector is the direction multiplied by impulse value
+    //  PVector vector = PVector.mult(newDir, impulse);
+
+    //  // apply oppositely to balls so they move opposite
+    //  velocity.sub(vector);
+    //  other.velocity.add(vector);
+    //}
   }
 }
