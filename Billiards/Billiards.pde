@@ -2,6 +2,7 @@ ArrayList<Ball>ballList;
 ArrayList<int[]>colorList;
 ArrayList<Ball>stripes;
 ArrayList<Ball>solids;
+ArrayList<PVector>pockets;
 Table t1;
 StrengthBar strengthB;
 Ball cueBall;
@@ -13,11 +14,17 @@ void setup() {
   colorList = new ArrayList<int[]>(8);
   stripes = new ArrayList<Ball>(7);
   solids = new ArrayList<Ball>(7);
-
+  
+  pockets.add(new PVector(36, 36));
+  pockets.add(new PVector(476, 36));
+  pockets.add(new PVector(476, 876));
+  pockets.add(new PVector(36, 876));
+  pockets.add(new PVector(36, 456));
+  pockets.add(new PVector(476, 456));
   
   float radius = 12.5;
 
-  cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255));
+  cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255), pockets);
   ballList.add(cueBall);
   stick = new CueStick(cueBall);
 
@@ -62,7 +69,7 @@ void setup() {
       int[] c = colorList.get(number % 7);
       if (number == 8) c = new int[] {0, 0, 0};
       float x = startX + offset + (col * ballSpace);     // take inital spot, offset it, then add the spacing between each ball depending on which ball it is (1st, 2nd)
-      Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]));
+      Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]), pockets);
       ballList.add(b);
       if (number >= 0 && number < 8) {
         solids.add(b);
@@ -74,7 +81,6 @@ void setup() {
       
     }
   }
-  //frameRate(10);
 }
 void mouseClicked() {
   stick.strike();

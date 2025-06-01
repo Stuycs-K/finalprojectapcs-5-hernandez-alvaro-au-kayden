@@ -5,8 +5,9 @@ class Ball {
   int number;
   boolean inPocket;
   boolean striped;
+  ArrayList<PVector> pockets;
 
-  public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c) {
+  public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c, ArrayList<PVector> pocketCoords) {
     position = new PVector(x, y);
     velocity = new PVector(xSpeed, ySpeed);
     acceleration = new PVector(0, 0);
@@ -14,6 +15,7 @@ class Ball {
     number = num;
     this.c = c;
     inPocket = false;
+    pockets = pocketCoords;
 
     if (num >= 9 && num <= 15) {
       striped = true;
