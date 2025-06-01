@@ -61,8 +61,7 @@ class Ball {
     // applying accelerations to x and y;
     PVector veloChange = PVector.mult(acceleration, time);
     velocity.add(veloChange);
-
-    PVector posChange = PVector.mult(velocity, time);
+    
     // change pos
     position.add(velocity);
 
@@ -74,7 +73,17 @@ class Ball {
       velocity.set(0, 0);
     }
   }
-
+  
+  public boolean inPocket() {
+    for (PVector p : pockets) {
+      if (p.dist(position) < 18 + 20) {      // if the distance between them is less than the pocket radius
+        pocket();
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public void pocket() {
     inPocket = true;
     velocity = new PVector(0, 0);
@@ -82,15 +91,19 @@ class Ball {
   }
 
   public void bounce() {
-    // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
-    if (position.x < 56 + radius)
-      velocity.x = abs(velocity.x * 0.85);
-    if (position.x > width - (125 + radius))
-      velocity.x= -1 * abs(velocity.x * 0.85);
-    if (position.y < 56 + radius)
-      velocity.y = abs(velocity.y * 0.85);
-    if (position.y > height - (56 + radius))
-      velocity.y= -1 * abs(velocity.y * 0.85);
+    
+    // ONLY BOUNCE IF NOT IN POCKET
+    if (!inPocket()) {
+      // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
+      if (position.x < 56 + radius)
+        velocity.x = abs(velocity.x * 0.85);
+      if (position.x > width - (130 + radius))
+        velocity.x= -1 * abs(velocity.x * 0.85);
+      if (position.y < 56 + radius)
+        velocity.y = abs(velocity.y * 0.85);
+      if (position.y > height - (56 + radius))
+        velocity.y= -1 * abs(velocity.y * 0.85);
+    }
   }
 
   public void collide(ArrayList<Ball> list) {
