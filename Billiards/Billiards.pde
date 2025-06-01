@@ -37,12 +37,12 @@ void setup() {
   // green
   colorList.add(new int[] {0, 255, 0});
   // brown / maroon
-  colorList.add(new int[] {196, 164, 132});
+  colorList.add(new int[] {128, 0, 0});
   // black
   colorList.add(new int[] {0, 0, 0});
 
   // initial starting points for the first ball
-  float startX = width / 2;
+  float startX = width / 2 - 30;
   float startY = height * 0.3;
   
   // other vars needed
@@ -53,7 +53,7 @@ void setup() {
   float rowHeight = sqrt(3) / 2 * ballSpace;       // sqrt(3) / 2 because the centers form 60 deg angles ; sin 60 deg is sqrt3/2
   
   
-  for (int r = 0; r < rows; r++) {
+  for (int r = 0; r < 5; r++) {
     int balls = r + 1;       // each consecutive row has one more than the last (1, 2, 3, 4, 5)
     float offset = -(balls - 1) * ballSpace / 2;       // to center the balls, you need the leftmost ball to move multiples of half a space; ie if 2 balls, they need to be shifted 1/2 over, if 3 balls, 1 ball over, etc...
     float y = startY - (r * rowHeight);
@@ -74,6 +74,7 @@ void setup() {
       
     }
   }
+  //frameRate(10);
 }
 void mouseClicked() {
   stick.strike();

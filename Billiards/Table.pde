@@ -51,20 +51,39 @@ class Table {
     circle(36, 456, 36);
     circle(476, 456, 36);
     fill(255);
+    
+    // adding steps so that position is calculated multiple times, 
+    int steps = 4;
+    float time = 1.0 / steps;
+    
     boolean ballsMoving = false;
     // general loop for updating the balls
-    for (Ball b : ballList) {
-        b.show();
-        b.move();
+    for (int i = 0; i < steps; i++) {
+      
+      // update all the physics (movement, collisions, bouncing, etc...
+      for (Ball b : ballList) {
+        b.update(time);
         b.bounce();
-        b.collide(ballList);
+       }
+      // update collisions
+      for (Ball b : ballList) {
+        b.collide(ballList); 
+      }
+      // if everything isnt moving, then display the stick
+      for (Ball b : ballList) {
         if (b.velocity.mag() > 0) {
           ballsMoving = true;
         }
         else {
           ballsMoving = false;
         }
+      }
     }
+      
+      // show the balls after the physics are all updated
+      for (Ball b: ballList) {
+        b.show(); 
+      }
     
     // when does the stick appear
     if (cueBall.velocity.mag() < 0.01){
@@ -72,11 +91,7 @@ class Table {
         stick.show();
       }
     }
-    cueBall.move();
+    cueBall.update(steps);
     cueBall.bounce();
     }
-  
-  public void addBalls(Ball b) {
-   balls.add(b);
-  }
 }

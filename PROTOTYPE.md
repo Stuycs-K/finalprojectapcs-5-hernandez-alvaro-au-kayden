@@ -19,8 +19,9 @@ Expanded Description :
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
 ### UML Diagram ###
-![UML Diagram](uml.png)
-
+![Third UML](uml3.png)
+![Second UML](uml2.png)
+![First UML](uml1.png)
 
 # Intended pacing:
 
@@ -32,7 +33,7 @@ Kayden will work on the physics behind the game.
 ### Ball Class and Basic Collision Physics -- To be done by Tuesday, May 27th
 - [x] Add color and number to each ball
 - [x] Implement vector functionality
-- [ ] Add basic collision, will be done by finding the vector in between two balls when they are close enough and transfering velocity. (Assuming perfectly elastic collisions and no spin for now)
+- [x] Add basic collision, will be done by finding the vector in between two balls when they are close enough and transfering velocity. (Assuming perfectly elastic collisions and no spin for now)
 - [x] Add friction
 
 
