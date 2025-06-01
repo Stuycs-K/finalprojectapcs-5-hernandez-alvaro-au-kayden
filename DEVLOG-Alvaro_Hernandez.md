@@ -24,3 +24,9 @@ Got the tracking working. Ran into issues with rotation. Took all of class~30 mi
 
 ### 2024-05-28 - Finished showing stick and made the striking method.
 This was a little bit of a longer work session since I had to figure out the trig behind the coordinates. Then, I made the stick look good using a couple different polygons. Lastly, I coded a quick strike method and made sure it only shows the stick when the cueball is not in motion. Took around 90 minutes.
+
+### 2024-05-29 - Worked on making the pockets.
+Involved exact dimensions from Dimensions.com and I made all 6 pockets. 60 minutes.
+
+### 2024-05-30 - Designed Strength Bar.
+Made a new class for strength and showed the bar. 40 minutes.
