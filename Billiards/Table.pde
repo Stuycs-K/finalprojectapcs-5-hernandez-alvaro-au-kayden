@@ -53,7 +53,7 @@ class Table {
     fill(255);
     
     // adding steps so that position is calculated multiple times, 
-    int steps = 4;
+    int steps = 6;
     float time = 1.0 / steps;
     
     boolean ballsMoving = false;
@@ -82,7 +82,9 @@ class Table {
       
       // show the balls after the physics are all updated
       for (Ball b: ballList) {
-        b.show(); 
+        else {
+          b.show();
+        }
       }
     
     // when does the stick appear
