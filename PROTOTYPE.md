@@ -30,25 +30,25 @@ Alvaro will work on the visuals and piecing the game together.
 Kayden will work on the physics behind the game.
 
 ### Ball Class and Basic Collision Physics -- To be done by Tuesday, May 27th
-- [ x] Add color and number to each ball
-- [ x] Implement vector functionality
+- [x] Add color and number to each ball
+- [x] Implement vector functionality
 - [ ] Add basic collision, will be done by finding the vector in between two balls when they are close enough and transfering velocity. (Assuming perfectly elastic collisions and no spin for now)
-- [ x] Add friction
+- [x] Add friction
 
 
 
 ### Stick Class -- To be done by Friday, May 30th - Kayden
 - [ ] Establish an incremental way to hit a ball with differing levels of force
-- [ x] Find angle from tip of stick to cue ball
+- [x] Find angle from tip of stick to cue ball
 - [ ] Apply Vector with correct force
-- [ x] Show the stick as you move it around the cue ball--will always have a direct line to the center of the cue ball
+- [x] Show the stick as you move it around the cue ball--will always have a direct line to the center of the cue ball
 
 
 
 ### Implement pockets with the Table Class -- To be done by Monday, June 2nd
-- [ x] Make appropriately sized pockets--potential to change size depending on difficulty
+- [x] Make appropriately sized pockets--potential to change size depending on difficulty
 - [ ] Remove collision of the walls around the pocket and check when the center of a ball excedes a certain coordinate.
-- [ x] Make the table look recognizable as a pool table
+- [x] Make the table look recognizable as a pool table
 
 
 
