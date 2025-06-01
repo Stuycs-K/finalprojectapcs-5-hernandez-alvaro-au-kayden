@@ -14,6 +14,7 @@ void setup() {
   colorList = new ArrayList<int[]>(8);
   stripes = new ArrayList<Ball>(7);
   solids = new ArrayList<Ball>(7);
+  pockets = new ArrayList<PVector>(6);
   
   pockets.add(new PVector(36, 36));
   pockets.add(new PVector(476, 36));
@@ -51,6 +52,8 @@ void setup() {
   // initial starting points for the first ball
   float startX = width / 2 - 30;
   float startY = height * 0.3;
+  
+  
   
   // other vars needed
   int rows = 5;
