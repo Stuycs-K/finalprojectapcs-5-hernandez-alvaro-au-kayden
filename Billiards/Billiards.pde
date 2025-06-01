@@ -37,7 +37,7 @@ void setup() {
   // green
   colorList.add(new int[] {0, 255, 0});
   // brown / maroon
-  colorList.add(new int[] {196, 164, 132});
+  colorList.add(new int[] {128, 0, 0});
   // black
   colorList.add(new int[] {0, 0, 0});
 
