@@ -98,7 +98,7 @@ class Ball {
     }
   }
 
-  public void collideHelper(Ball other) {
+  private void collideHelper(Ball other) {
     float distance = PVector.dist(this.position, other.position);
     if (distance < radius * 2 && distance > 0) {
       
