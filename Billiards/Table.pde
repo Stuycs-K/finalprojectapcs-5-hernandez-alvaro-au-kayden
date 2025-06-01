@@ -94,8 +94,4 @@ class Table {
     cueBall.update(steps);
     cueBall.bounce();
     }
-  
-  public void addBalls(Ball b) {
-   balls.add(b);
-  }
 }
