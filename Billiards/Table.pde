@@ -64,16 +64,21 @@ class Table {
       for (Ball b : ballList) {
         b.update(time);
         b.bounce();
-       
+       }
+      // update collisions
+      for (Ball b : ballList) {
+        b.collide(ballList); 
+      }
+      // if everything isnt moving, then display the stick
+      for (Ball b : ballList) {
         if (b.velocity.mag() > 0) {
           ballsMoving = true;
         }
         else {
           ballsMoving = false;
         }
-         b.collide(ballList);
       }
-      b.collide(ballList);
+    }
       
       // show the balls after the physics are all updated
       for (Ball b: ballList) {
@@ -86,7 +91,7 @@ class Table {
         stick.show();
       }
     }
-    cueBall.move();
+    cueBall.update(steps);
     cueBall.bounce();
     }
   
