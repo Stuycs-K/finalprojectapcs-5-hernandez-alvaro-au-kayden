@@ -57,8 +57,10 @@ class Ball {
 
   public void update(float time) {
     // applying accelerations to x and y;
-    velocity.add(acceleration);
+    PVector veloChange = PVector.mult(acceleration, time);
+    velocity.add(veloChange);
 
+    PVector posChange = PVector.mult(velocity, time);
     // change pos
     position.add(velocity);
 
