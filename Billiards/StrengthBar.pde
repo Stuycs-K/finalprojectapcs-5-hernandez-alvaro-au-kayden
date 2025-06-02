@@ -20,7 +20,7 @@ class StrengthBar{
     int y1 = 200;
     int level = 2;
     for (int y2 = 622; y2 > 200; y2 -= 90){
-       if (strength >= level)
+       if (cue.strength >= level)
          fill(255, 127, 127);
        else
          fill(255);
@@ -31,12 +31,12 @@ class StrengthBar{
     noStroke();
     fill(255, 127, 127);
     circle(552.5, 712, 49);
-    if (strength !=  6)
+    if (cue.strength !=  6)
       fill(255);
     circle(552.5, 200, 49);
   }
   
   public void setStrength(int num){
-    strength = num; 
+    cue.strength = num; 
   }
 }
