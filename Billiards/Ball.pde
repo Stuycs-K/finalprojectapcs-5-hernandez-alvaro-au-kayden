@@ -97,7 +97,7 @@ class Ball {
       // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
       if (position.x < 56 + radius)
         velocity.x = abs(velocity.x * 0.85);
-      if (position.x > width - (130 + radius))
+      if (position.x > width - (133 + radius))
         velocity.x= -1 * abs(velocity.x * 0.85);
       if (position.y < 56 + radius)
         velocity.y = abs(velocity.y * 0.85);
