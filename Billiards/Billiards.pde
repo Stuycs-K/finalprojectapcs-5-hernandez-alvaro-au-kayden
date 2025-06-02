@@ -91,9 +91,9 @@ void mouseClicked() {
 
 void draw() {
     t1.display();
-    //for (PVector p : pockets) {
-    //  fill(128, 0, 0);
-    // ellipse(p.x, p.y, 50, 50); 
-    //}
+    for (PVector p : pockets) {
+      fill(128, 0, 0);
+     ellipse(p.x, p.y, 50, 50); 
+    }
     strengthB.display();
 }
