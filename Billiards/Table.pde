@@ -164,6 +164,14 @@ class Table {
     }
       
       // show the balls after the physics are all updated
+      
+      // remove the balls if they are in the pocket !
+      for (int i = 0; i < ballList.size(); i++) {
+       if (ballList.get(i).inPocket()) {
+        ballList.remove(i);
+       }
+        
+      }
       for (Ball b: ballList) {
           b.show();
       }
