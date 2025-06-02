@@ -76,7 +76,7 @@ class Ball {
   
   public boolean inPocket() {
     for (PVector p : pockets) {
-      if (p.dist(position) < 18 + 20) {      // if the distance between them is less than the pocket radius
+      if (p.dist(position) < 18 + 50) {      // if the distance between them is less than the pocket radius
         pocket();
         return true;
       }
