@@ -82,9 +82,7 @@ class Table {
       
       // show the balls after the physics are all updated
       for (Ball b: ballList) {
-        else {
           b.show();
-        }
       }
     
     // when does the stick appear
