@@ -7,7 +7,7 @@ class CueStick{
  public CueStick(Ball cue) {
    this.x = cue.position.x;
    this.y = cue.position.y;
-   strength = 20;
+   strength = 60;
    ball = cue;
    dir = new PVector(x - mouseX, y - mouseY);
  }
@@ -35,16 +35,16 @@ class CueStick{
     float w = 9/2;
     float h = 12; //THIS IS THE VALUE YOU CHANGE, PROPORTIONS WILL TAKE A LITTLE LONGER TO CHANGE
     quad(
-      x+w*b,       y-w*a, 
-      x-w*b,       y+w*a, 
-      x-w*b-h*a,  y+w*a-h*b, 
+      x+w*b,       y-w*a,
+      x-w*b,       y+w*a,
+      x-w*b-h*a,  y+w*a-h*b,
       x+w*b-h*a,  y-w*a-h*b);
     fill(196, 164, 132);
     float w2 = 7.5/2;
     float h2 = h * 8;
     float w3 = 7.5/2 + 1;
     quad(
-      x-w2*b-h*a,  y+w2*a-h*b, 
+      x-w2*b-h*a,  y+w2*a-h*b,
       x+w2*b-h*a,  y-w2*a-h*b,
       x+w3*b-h*a-h2*a,  y-w3*a-h*b-h2*b,
       x-w3*b-h*a-h2*a,  y+w3*a-h*b-h2*b);
@@ -58,7 +58,7 @@ class CueStick{
       x+w4*b-h*a-h2*a-h3*a,  y-w4*a-h*b-h2*b-h3*b);
     circle(x-h*a-h2*a-h3*a, y-h*b-h2*b-h3*b, 24);
   }
-  
+
   public void strike(){
     if (ball.velocity.mag() < 0.01){
       dir.mult(strength);

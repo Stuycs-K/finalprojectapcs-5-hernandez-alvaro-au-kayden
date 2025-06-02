@@ -2,6 +2,7 @@ ArrayList<Ball>ballList;
 ArrayList<int[]>colorList;
 ArrayList<Ball>stripes;
 ArrayList<Ball>solids;
+ArrayList<PVector>pockets;
 Table t1;
 StrengthBar strengthB;
 Ball cueBall;
@@ -13,11 +14,18 @@ void setup() {
   colorList = new ArrayList<int[]>(8);
   stripes = new ArrayList<Ball>(7);
   solids = new ArrayList<Ball>(7);
+  pockets = new ArrayList<PVector>(6);
 
-  
+  pockets.add(new PVector(36, 36));
+  pockets.add(new PVector(476, 36));
+  pockets.add(new PVector(476, 876));
+  pockets.add(new PVector(36, 876));
+  pockets.add(new PVector(36, 456));
+  pockets.add(new PVector(476, 456));
+
   float radius = 12.5;
 
-  cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255));
+  cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255), pockets);
   ballList.add(cueBall);
   stick = new CueStick(cueBall);
 
@@ -37,32 +45,34 @@ void setup() {
   // green
   colorList.add(new int[] {0, 255, 0});
   // brown / maroon
-  colorList.add(new int[] {196, 164, 132});
+  colorList.add(new int[] {128, 0, 0});
   // black
   colorList.add(new int[] {0, 0, 0});
 
   // initial starting points for the first ball
-  float startX = width / 2;
+  float startX = width / 2 - 30;
   float startY = height * 0.3;
-  
+
+
+
   // other vars needed
   int rows = 5;
   int number = 1;
-  
+
   float ballSpace = radius * 2 + 1;
   float rowHeight = sqrt(3) / 2 * ballSpace;       // sqrt(3) / 2 because the centers form 60 deg angles ; sin 60 deg is sqrt3/2
-  
-  
-  for (int r = 0; r < rows; r++) {
+
+
+  for (int r = 0; r < 5; r++) {
     int balls = r + 1;       // each consecutive row has one more than the last (1, 2, 3, 4, 5)
     float offset = -(balls - 1) * ballSpace / 2;       // to center the balls, you need the leftmost ball to move multiples of half a space; ie if 2 balls, they need to be shifted 1/2 over, if 3 balls, 1 ball over, etc...
     float y = startY - (r * rowHeight);
-    
+
     for (int col = 0; col < balls; col++) {
       int[] c = colorList.get(number % 7);
       if (number == 8) c = new int[] {0, 0, 0};
       float x = startX + offset + (col * ballSpace);     // take inital spot, offset it, then add the spacing between each ball depending on which ball it is (1st, 2nd)
-      Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]));
+      Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]), pockets);
       ballList.add(b);
       if (number >= 0 && number < 8) {
         solids.add(b);
@@ -71,7 +81,7 @@ void setup() {
         stripes.add(b);
       }
       number++;
-      
+
     }
   }
 }
@@ -80,6 +90,10 @@ void mouseClicked() {
 }
 
 void draw() {
-    strengthB.display();
     t1.display();
+    //for (PVector p : pockets) {
+    //  fill(128, 0, 0);
+    // ellipse(p.x, p.y, 50, 50);
+    //}
+    strengthB.display();
 }
