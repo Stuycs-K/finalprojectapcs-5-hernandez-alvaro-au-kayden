@@ -7,13 +7,9 @@ class CueStick{
  public CueStick(Ball cue) {
    this.x = cue.position.x;
    this.y = cue.position.y;
-   strength = 60;
+   strength = 6;
    ball = cue;
    dir = new PVector(x - mouseX, y - mouseY);
- }
-
- public void setStrength(int num){
-   strength = num;
  }
 
  public void show(){
@@ -60,7 +56,7 @@ class CueStick{
 
   public void strike(){
     if (ball.velocity.mag() < 0.01){
-      dir.mult(strength);
+      dir.mult(strength * 10);
       ball.acceleration.add(dir);
     }
   }
