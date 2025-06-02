@@ -18,22 +18,15 @@ class StrengthBar{
     rect(552, 456, 50, 512);
     int x1 = 527;
     int x2 = 577;
-    for (int y = 121 + 175; y < 712; y += 106.66666){
+    for (int y = 622; y > 200; y -= 90){
        line(x1, y, x2, y); 
     }
-    fill(100);
-    int y1 = 121+175;
-    quad(x1,200, x2, 200, x2, y1, x1, y1);
-    quad(x1, 712, x2, 712, x2, 737-121, x1, 737-121);
-    for (int y2 = 121 + 175 + 106 + 2/3; y2 < 712; y2 += 106 + 2/3 + 1){
-       quad(x1, y1, x2, y1, x2, y2, x1, y2); 
-       y1 = y2;
-    }
-    
-    
     noStroke();
     circle(552.5, 200, 49);
     circle(552.5, 712, 49);
-    
+  }
+  
+  public void setStrength(int num){
+    strength = num; 
   }
 }

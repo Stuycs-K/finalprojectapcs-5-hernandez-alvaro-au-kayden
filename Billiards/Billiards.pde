@@ -7,6 +7,8 @@ Table t1;
 StrengthBar strengthB;
 Ball cueBall;
 CueStick stick;
+int distanceCueToStick = 40;
+int lengthOfStick = 12;
 
 void setup() {
   size(592, 912);
