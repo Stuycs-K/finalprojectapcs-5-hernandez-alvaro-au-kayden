@@ -1,6 +1,6 @@
 class StrengthBar{
   CueStick cue;
-  
+
   public StrengthBar(CueStick cueStick){
     cue = cueStick;
   }
@@ -8,7 +8,7 @@ class StrengthBar{
   public void display(){
     fill(173, 216, 230);
     rect(552, 456, 80, 912);
-    
+
     fill(255);
     stroke(0);
     circle(552, 200, 50);
@@ -18,7 +18,7 @@ class StrengthBar{
     if (cue.strength != 6)
       fill(255);
     rect(552, 456-128, 50, 256);
-    
+
     int x1 = 527;
     int x2 = 577;
     int y1 = 712;
@@ -41,8 +41,8 @@ class StrengthBar{
       fill(255);
     circle(552.5, 200, 49);
   }
-  
+
   public void setStrength(int num){
-    cue.strength = num; 
+    cue.strength = num;
   }
 }
