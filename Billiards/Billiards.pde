@@ -10,6 +10,7 @@ void mouseClicked() {
   t1.stick.strike();
 }
 
+
 void draw() {
     t1.display();
     for (PVector p : t1.pockets) {
