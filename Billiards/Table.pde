@@ -112,6 +112,19 @@ class Table {
     rect(48, 456, 16, 912-96);
     rect(464, 456, 16, 912-96);
 
+    //diamonds
+    fill(255);
+    for(int k = 0; k<912; k+=856){
+      for(int i = 100; i < 400; i+=100)
+        quad(i+51, 28+k, i+56, 20+k, i+61, 28+k, i+56, 36+k);
+    }
+    for(int k = 0; k<500; k+=456){
+      for(int i = 100; i < 800; i+=100){
+        if (i!= 400)
+        quad(28+k, i+51, 20+k, i+56, 28+k, i+61, 36+k, i+56);
+      }
+    } //<>//
+    
     fill(2, 48, 32);
     float xPock = 36;
     float yPock = 36;

@@ -1,7 +1,7 @@
 Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
-
+//playable table is 400x800
 void setup() {
   size(592, 912);
   t1 = new Table(width, height);
