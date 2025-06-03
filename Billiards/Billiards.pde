@@ -21,9 +21,9 @@ void keyPressed() {
 
 void draw() {
     t1.display();
-    //for (PVector p : t1.pockets) {
-    //  fill(128, 0, 0);
-    // ellipse(p.x, p.y, 50, 50);
-    //}
+    for (PVector p : t1.pockets) {
+      fill(128, 0, 0);
+     ellipse(p.x, p.y, 35, 35);
+    }
     t1.strengthB.display();
 }

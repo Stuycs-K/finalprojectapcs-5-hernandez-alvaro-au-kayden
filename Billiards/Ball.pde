@@ -68,7 +68,7 @@ class Ball {
     acceleration.set(0, 0);
 
     // friction
-    velocity.mult(0.993);
+    velocity.mult(0.995);
     if (velocity.mag() < 0.01) {
       velocity.set(0, 0);
     }
@@ -76,18 +76,14 @@ class Ball {
   
   public boolean inPocket() {
     for (PVector p : pockets) {
-      if (p.dist(position) < 18 + 40) {      // if the distance between them is less than the pocket radius
-        pocket();
+      if (p.dist(position) < 18 + 35) {      // if the distance between them is less than the pocket radius     
+        inPocket = true;
+        velocity = new PVector(0, 0);
+        acceleration = new PVector(0, 0);
         return true;
       }
     }
     return false;
-  }
-  
-  public void pocket() {
-    inPocket = true;
-    velocity = new PVector(0, 0);
-    acceleration = new PVector(0, 0);
   }
 
   public void bounce() {

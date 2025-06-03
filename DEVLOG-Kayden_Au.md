@@ -34,3 +34,13 @@ Completed the intial ball positions, still need to move 8 ball to the center but
 
 ### 2025-05-31
 Long working session for fixing collisions, updating bounce detection, and updated the way that the game is displayed. Changed the loop for the display so that it updates the physics proponents 4 times per second, and then collisions once. Collisions work properly, I added the velocity vectors to the wrong balls, also added a new part for overlapping space between the balls. 
+
+### 2025-06-01
+Fixed collisions completely, reworked pockets and how they are detected by balls. Works completely.
+
+About 30 minutes.
+
+### 2025-06-02
+Transferred all of the game setup code to the Table class, been adjusting the pocket radius through testing, changed gravity constant.
+
+About 50 minutes.
