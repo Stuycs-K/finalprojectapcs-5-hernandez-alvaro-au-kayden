@@ -40,25 +40,25 @@ Kayden will work on the physics behind the game.
 
 
 ### Stick Class -- To be done by Friday, May 30th - Kayden
-- [ ] Establish an incremental way to hit a ball with differing levels of force
+- [x] Establish an incremental way to hit a ball with differing levels of force
 - [x] Find angle from tip of stick to cue ball
-- [ ] Apply Vector with correct force
+- [x] Apply Vector with correct force
 - [x] Show the stick as you move it around the cue ball--will always have a direct line to the center of the cue ball
 
 
 
 ### Implement pockets with the Table Class -- To be done by Monday, June 2nd
 - [x] Make appropriately sized pockets--potential to change size depending on difficulty
-- [ ] Remove collision of the walls around the pocket and check when the center of a ball excedes a certain coordinate.
+- [x] Remove collision of the walls around the pocket and check when the center of a ball excedes a certain coordinate.
 - [x] Make the table look recognizable as a pool table
 
 
 
 ### Bring the game together -- To be done by Wednesday, June 4th
 - [ ] Make sure the game reacts accordingly to which ball has been pocketed--if it is the black one, instant loss; if it is the cue ball, have it reset the ball; if it is your respective teams color, give the player another turn
-- [ ] Display the force level of the stick class as a vertical bar
+- [x] Display the force level of the stick class as a vertical bar
 - [ ] Perhaps have a way to toggle the difficulty by altering the sizes of the pockets
 - [ ] Have a reset button
-- [ ] Initialize the game in the correct way:
+- [x] Initialize the game in the correct way:
 ![image](https://github.com/user-attachments/assets/3e87d1c2-1734-445a-89ba-500da1f44dee)
 ^ Initial state of game

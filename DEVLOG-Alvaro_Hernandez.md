@@ -30,3 +30,6 @@ Involved exact dimensions from Dimensions.com and I made all 6 pockets. 60 minut
 
 ### 2024-05-30 - Designed Strength Bar.
 Made a new class for strength and showed the bar. 40 minutes.
+
+### 2024-06-02 - Made Bar Functional.
+Made it so you can actually change the strength and the bar reflects its current level with your keys. - 40 minutes

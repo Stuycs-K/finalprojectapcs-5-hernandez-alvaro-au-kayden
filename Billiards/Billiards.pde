@@ -10,6 +10,15 @@ void mouseClicked() {
   t1.stick.strike();
 }
 
+void keyPressed() {
+  if (keyCode >= 49 && keyCode <= 54){
+    t1.stick.strength = int(key) - 48;
+  }
+  if (key == ' '){
+   t1.stick.strength=t1.stick.strength%6 + 1; 
+  }
+}
+
 void draw() {
     t1.display();
     for (PVector p : t1.pockets) {
