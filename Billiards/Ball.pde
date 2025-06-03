@@ -68,7 +68,7 @@ class Ball {
     acceleration.set(0, 0);
 
     // friction
-    velocity.mult(0.993);
+    velocity.mult(0.995);
     if (velocity.mag() < 0.01) {
       velocity.set(0, 0);
     }
