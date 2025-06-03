@@ -8,7 +8,6 @@ class Table {
   StrengthBar strengthB;
   Ball cueBall;
   CueStick stick;
-  float radius = 12.5;
   
   public Table(int w, int l) {
     width = w;
@@ -36,7 +35,10 @@ class Table {
   
   public void gameSetup() {
     // game setup
-    cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255), pockets);
+    float startX = (width / 2) - 40;
+    float startY = height * 0.3;
+    
+    cueBall = new Ball(startX, 700.0, 0, 0, radius, 0, color(255), pockets);
     ballList.add(cueBall);
     stick = new CueStick(cueBall);
     
@@ -59,9 +61,8 @@ class Table {
     // black
     colorList.add(new int[] {0, 0, 0});
 
-    // initial starting points for the first ball
-    float startX = (width / 2) - 40;
-    float startY = height * 0.3;
+    
+    
     
     // other vars needed
     int rows = 5;
@@ -167,8 +168,10 @@ class Table {
       
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
-       if (ballList.get(i).inPocket()) {
-        ballList.remove(i);
+       if (ballList.get(i).inPocket) {
+         ballList.remove(i);
+         System.out.println(ballList.toString());
+         System.out.println("remove");
        }
         
       }
