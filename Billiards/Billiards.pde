@@ -1,6 +1,7 @@
 Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
+float radius = 12.5;
 
 void setup() {
   size(592, 912);
@@ -19,6 +20,12 @@ void keyPressed() {
   }
 }
 
+void mouseDragged() 
+{
+  t1.cueBall.position.x = mouseX;
+  t1.cueBall.position.y = mouseY;
+  
+}
 void draw() {
     t1.display();
     for (PVector p : t1.pockets) {
@@ -26,4 +33,12 @@ void draw() {
      ellipse(p.x, p.y, 35, 35);
     }
     t1.strengthB.display();
+    
+    // when the cue ball is pocketed, spawn a new one at center
+    if (t1.cueBall.inPocket) {
+      Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
+      t1.ballList.add(cueBall);
+      System.out.println(t1.ballList.toString());
+      t1.stick = new CueStick(cueBall);
+    }
 }
