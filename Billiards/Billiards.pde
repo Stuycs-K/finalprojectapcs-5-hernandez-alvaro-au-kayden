@@ -50,15 +50,18 @@ void draw() {
       // make a new strength bar
       t1.strengthB = new StrengthBar(newStick);
     }
-    // if 8 ball goes in you lose 
-    for (int i = 0; i < t1.ballList.size(); i++) {
-      // if the ball is the eight ball
-      Ball b = t1.ballList.get(i);
-       if (b.eightball && b.inPocket) {
-         textAlign(CENTER, CENTER);
-         textSize(200);
-         text("YOU LOSE!", width / 2 - 40, 456.0);
-         exit();
-       }
+    
+    // if 8 ball goes in you lose
+    
+    // if the eight ball is in the pocket
+    if (t1.eightBall.inPocket) {
+      
+      // if there still exists balls
+      if (! (t1.ballList.size() == 1)) {
+        textAlign(CENTER, CENTER);
+        textSize(100);
+        text("YOU LOSE!", width / 2 - 40, 456.0);
+        exit();
+      }
     }
 }
