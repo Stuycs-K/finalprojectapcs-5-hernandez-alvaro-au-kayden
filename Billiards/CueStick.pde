@@ -58,6 +58,7 @@ class CueStick{
     if (ball.velocity.mag() < 0.01){
       dir.mult(strength * 10);
       ball.acceleration.add(dir);
+      numOfTurns++;
     }
   }
 }
