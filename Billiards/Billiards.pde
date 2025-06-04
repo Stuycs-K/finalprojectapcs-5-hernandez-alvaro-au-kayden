@@ -26,6 +26,7 @@ void mouseDragged()
   t1.cueBall.position.y = mouseY;
   
 }
+
 void draw() {
     t1.display();
     for (PVector p : t1.pockets) {
@@ -36,9 +37,28 @@ void draw() {
     
     // when the cue ball is pocketed, spawn a new one at center
     if (t1.cueBall.inPocket) {
+      
+      // new cue ball
       Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
       t1.ballList.add(cueBall);
-      System.out.println(t1.ballList.toString());
-      t1.stick = new CueStick(cueBall);
+      t1.cueBall = cueBall;
+      
+      // make a new stick
+      CueStick newStick = new CueStick(cueBall);
+      t1.stick = newStick;
+      
+      // make a new strength bar
+      t1.strengthB = new StrengthBar(newStick);
+    }
+    // if 8 ball goes in you lose 
+    for (int i = 0; i < t1.ballList.size(); i++) {
+      // if the ball is the eight ball
+      Ball b = t1.ballList.get(i);
+       if (b.eightball && b.inPocket) {
+         textAlign(CENTER, CENTER);
+         textSize(200);
+         text("YOU LOSE!", width / 2 - 40, 456.0);
+         exit();
+       }
     }
 }
