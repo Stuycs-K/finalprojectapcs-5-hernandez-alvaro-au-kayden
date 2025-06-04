@@ -5,6 +5,7 @@ boolean gameOver = false;
 boolean winner = false;
 int numOfTurns = 0;
 //playable table is 400x800
+
 void setup() {
   size(592, 912);
   t1 = new Table(width, height);
@@ -24,6 +25,13 @@ void keyPressed() {
     t1 = new Table(width, height);
 }
 
+void mouseDragged() 
+{
+  t1.cueBall.position.x = mouseX;
+  t1.cueBall.position.y = mouseY;
+  
+}
+
 void draw() {
     t1.strengthB.display();
     t1.display();
@@ -31,6 +39,7 @@ void draw() {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
     }
+
     if(gameOver){
       fill(255);
       textAlign(CENTER);
@@ -40,6 +49,37 @@ void draw() {
       }
       else{
          text("You Lost :( \n In " + numOfTurns + " turns" , width/2 - 40, 456); 
+    t1.strengthB.display();
+      }
+    }
+    
+    // when the cue ball is pocketed, spawn a new one at center
+    if (t1.cueBall.inPocket) {
+      
+      // new cue ball
+      Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
+      t1.ballList.add(cueBall);
+      t1.cueBall = cueBall;
+      
+      // make a new stick
+      CueStick newStick = new CueStick(cueBall);
+      t1.stick = newStick;
+      
+      // make a new strength bar
+      t1.strengthB = new StrengthBar(newStick);
+    }
+    
+    // if 8 ball goes in you lose
+    
+    // if the eight ball is in the pocket
+    if (t1.eightBall.inPocket) {
+      
+      // if there still exists balls
+      if (! (t1.ballList.size() == 1)) {
+        textAlign(CENTER, CENTER);
+        textSize(100);
+        text("YOU LOSE!", width / 2 - 40, 456.0);
+        exit();
       }
     }
 }
