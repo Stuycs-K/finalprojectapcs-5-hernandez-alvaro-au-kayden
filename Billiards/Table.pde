@@ -7,6 +7,7 @@ class Table {
   ArrayList<PVector>pockets;
   StrengthBar strengthB;
   Ball cueBall;
+  Ball eightBall;
   CueStick stick;
   
   public Table(int w, int l) {
@@ -86,8 +87,11 @@ class Table {
         if (number >= 0 && number < 8) {
           solids.add(b);
         }
-        else if (number !=8) {
+        else if (number > 8 && number <= 15) {
           stripes.add(b);
+        }
+        else {
+          eightBall = b;
         }
         number++;
         
@@ -170,8 +174,6 @@ class Table {
       for (int i = 0; i < ballList.size(); i++) {
        if (ballList.get(i).inPocket) {
          ballList.remove(i);
-         System.out.println(ballList.toString());
-         System.out.println("remove");
        }
         
       }
