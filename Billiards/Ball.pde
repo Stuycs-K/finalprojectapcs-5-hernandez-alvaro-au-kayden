@@ -6,6 +6,7 @@ class Ball {
   boolean inPocket;
   boolean striped;
   ArrayList<PVector> pockets;
+  boolean eightball;
 
   public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c, ArrayList<PVector> pocketCoords) {
     position = new PVector(x, y);
@@ -19,6 +20,10 @@ class Ball {
 
     if (num >= 9 && num <= 15) {
       striped = true;
+    }
+    
+    if (num == 8) {
+      eightball = true;
     }
   }
 
