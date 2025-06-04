@@ -4,6 +4,9 @@ int lengthOfStick = 12;
 boolean gameOver = false;
 boolean winner = false;
 int numOfTurns = 0;
+float radius = 12.5;
+
+
 //playable table is 400x800
 
 void setup() {
