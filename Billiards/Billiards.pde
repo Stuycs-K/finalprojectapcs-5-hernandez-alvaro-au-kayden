@@ -1,6 +1,9 @@
 Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
+boolean gameOver = false;
+boolean winner = false;
+int numOfTurns = 0;
 //playable table is 400x800
 void setup() {
   size(592, 912);
@@ -22,10 +25,21 @@ void keyPressed() {
 }
 
 void draw() {
+    t1.strengthB.display();
     t1.display();
     for (PVector p : t1.pockets) {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
     }
-    t1.strengthB.display();
+    if(gameOver){
+      fill(255);
+      textAlign(CENTER);
+      textSize(80);
+      if (winner){
+        text("You Won! \n In " + numOfTurns + " turns" , width/2 - 40, 456); 
+      }
+      else{
+         text("You Lost :( \n In " + numOfTurns + " turns" , width/2 - 40, 456); 
+      }
+    }
 }
