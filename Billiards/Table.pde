@@ -99,6 +99,16 @@ class Table {
     }
   }
   
+  public boolean ballsMoving() {
+    for (Ball b : ballList) {
+        if (b.velocity.mag() > 0.1) {
+          return true;
+        }
+        return false;
+      }
+    return false;
+  }
+  
   public void display() {
     // setting up the borders and the display
     fill(2, 48, 32);
@@ -157,7 +167,6 @@ class Table {
     int steps = 6;
     float time = 1.0 / steps;
     
-    boolean ballsMoving = false;
     // general loop for updating the balls
     for (int i = 0; i < steps; i++) {
       
@@ -169,15 +178,6 @@ class Table {
       // update collisions
       for (Ball b : ballList) {
         b.collide(ballList); 
-      }
-      // if everything isnt moving, then display the stick
-      for (Ball b : ballList) {
-        if (b.velocity.mag() > 0) {
-          ballsMoving = true;
-        }
-        else {
-          ballsMoving = false;
-        }
       }
       currentPlayer = (currentPlayer + 1) % 2;
     }
@@ -211,7 +211,7 @@ class Table {
     
     // when does the stick appear
     if (cueBall.velocity.mag() < 0.01){
-      if (!ballsMoving) {
+      if (!ballsMoving()) {
         stick.show();
       }
     }
