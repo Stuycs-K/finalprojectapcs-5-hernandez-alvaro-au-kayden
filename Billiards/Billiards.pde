@@ -22,7 +22,7 @@ void keyPressed() {
     t1.stick.strength = int(key) - 48;
   }
   if (key == ' '){
-   t1.stick.strength=t1.stick.strength%6 + 1; 
+   t1.stick.strength=t1.stick.strength % 6 + 1; 
   }
   if (key == 'q')
     t1 = new Table(width, height);
@@ -30,9 +30,10 @@ void keyPressed() {
 
 void mouseDragged() 
 {
-  t1.cueBall.position.x = mouseX;
-  t1.cueBall.position.y = mouseY;
-  
+  if (t1.cueBall.inPocket || (t1.cueBall.velocity.mag() < 0.1 && t1.cueBall.scratched)) {
+    t1.cueBall.position.x = mouseX;
+    t1.cueBall.position.y = mouseY;
+  }
 }
 
 void draw() {
@@ -63,6 +64,7 @@ void draw() {
       Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
       t1.ballList.add(cueBall);
       t1.cueBall = cueBall;
+      t1.cueBall.scratched = true;
       
       // make a new stick
       CueStick newStick = new CueStick(cueBall);
