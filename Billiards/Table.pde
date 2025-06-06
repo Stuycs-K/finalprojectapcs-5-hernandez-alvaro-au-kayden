@@ -7,8 +7,8 @@ class Table {
   ArrayList<PVector>pockets;
   StrengthBar strengthB;
   Ball cueBall;
+  Ball eightBall;
   CueStick stick;
-  float radius = 12.5;
   
   public Table(int w, int l) {
     width = w;
@@ -36,7 +36,10 @@ class Table {
   
   public void gameSetup() {
     // game setup
-    cueBall = new Ball(250.0, 700.0, 0, 0, radius, 0, color(255), pockets);
+    float startX = (width / 2) - 40;
+    float startY = height * 0.3;
+    
+    cueBall = new Ball(startX, 700.0, 0, 0, radius, 0, color(255), pockets);
     ballList.add(cueBall);
     stick = new CueStick(cueBall);
     
@@ -59,9 +62,8 @@ class Table {
     // black
     colorList.add(new int[] {0, 0, 0});
 
-    // initial starting points for the first ball
-    float startX = (width / 2) - 40;
-    float startY = height * 0.3;
+    
+    
     
     // other vars needed
     int rows = 5;
@@ -85,8 +87,11 @@ class Table {
         if (number >= 0 && number < 8) {
           solids.add(b);
         }
-        else if (number !=8) {
+        else if (number > 8 && number <= 15) {
           stripes.add(b);
+        }
+        else {
+          eightBall = b;
         }
         number++;
         
@@ -116,14 +121,14 @@ class Table {
     fill(255);
     for(int k = 0; k<912; k+=856){
       for(int i = 100; i < 400; i+=100)
-        quad(i+51, 28+k, i+56, 20+k, i+61, 28+k, i+56, 36+k);
+        quad(i+51, 28+k, i+56, 22+k, i+61, 28+k, i+56, 34+k);
     }
     for(int k = 0; k<500; k+=456){
       for(int i = 100; i < 800; i+=100){
         if (i!= 400)
-        quad(28+k, i+51, 20+k, i+56, 28+k, i+61, 36+k, i+56);
+        quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
       }
-    } //<>//
+    } //<>// //<>//
     
     fill(2, 48, 32);
     float xPock = 36;
@@ -163,7 +168,8 @@ class Table {
        }
       // update collisions
       for (Ball b : ballList) {
-        b.collide(ballList); 
+        if(!cueBall.scratched)
+          b.collide(ballList); 
       }
       // if everything isnt moving, then display the stick
       for (Ball b : ballList) {
@@ -180,8 +186,8 @@ class Table {
       
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
-       if (ballList.get(i).inPocket()) {
-        ballList.remove(i);
+       if (ballList.get(i).inPocket) {
+         ballList.remove(i);
        }
         
       }

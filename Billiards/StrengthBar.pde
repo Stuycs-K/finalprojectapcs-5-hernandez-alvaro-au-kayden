@@ -40,5 +40,8 @@ class StrengthBar{
     if (cue.strength !=  6)
       fill(255);
     circle(552.5, 200, 49);
+    fill(0);
+    textSize(15);
+    text("'q' = Reset \n  \n nums/space \n = Strength", 552, 40);
   }
 }

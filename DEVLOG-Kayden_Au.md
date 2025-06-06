@@ -44,3 +44,8 @@ About 30 minutes.
 Transferred all of the game setup code to the Table class, been adjusting the pocket radius through testing, changed gravity constant.
 
 About 50 minutes.
+
+### 2025-06-04 
+Adding rules to the game, have cueball rule done, eight ball rule needs a little editing, other than that it works. 
+
+About 40 minutes.
