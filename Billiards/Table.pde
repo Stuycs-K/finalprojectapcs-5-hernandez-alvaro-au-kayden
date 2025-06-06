@@ -179,6 +179,7 @@ class Table {
           ballsMoving = false;
         }
       }
+      currentPlayer = (currentPlayer + 1) % 2;
     }
       
       // show the balls after the physics are all updated
