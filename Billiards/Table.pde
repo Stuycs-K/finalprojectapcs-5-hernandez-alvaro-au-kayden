@@ -187,6 +187,20 @@ class Table {
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
        if (ballList.get(i).inPocket) {
+         
+         // if the players have not received categories yet
+         if (strOrSol.size() == 0) {
+           // if it is striped, make the index of the playernumber striped 
+           if (ballList.get(i).striped) {
+             strOrSol.add(currentPlayer, "striped");
+             strOrSol.add(currentPlayer + 1 % 2, "solids");
+           }
+           // otherwise do the opposite
+           else {
+             strOrSol.add(currentPlayer, "solid");
+             strOrSol.add(currentPlayer + 1 % 2, "stripes");
+           }
+         }
          ballList.remove(i);
        }
         
