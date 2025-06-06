@@ -98,7 +98,7 @@ class Ball {
     if (!inPocket()) {
       // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
       boolean shouldBounce = false;
-      for (int i = 0; i < 2 * PI; i += PI/3){
+      for (int i = 0; i < 2 * PI; i += PI/2){
         color pixelColor = get((int) (position.x+radius*cos(i)), (int) (position.y+radius*sin(i)));
         if (green(pixelColor) == 93 || green(pixelColor) == 81){
           shouldBounce = true;
