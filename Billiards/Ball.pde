@@ -7,6 +7,7 @@ class Ball {
   boolean striped;
   ArrayList<PVector> pockets;
   boolean eightball;
+  boolean scratched;
 
   public Ball(float x, float y, float xSpeed, float ySpeed, float r, int num, color c, ArrayList<PVector> pocketCoords) {
     position = new PVector(x, y);
