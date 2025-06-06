@@ -3,6 +3,9 @@ int distanceCueToStick = 40;
 int lengthOfStick = 12;
 boolean gameOver = false;
 boolean winner = false;
+
+// turn based movement
+int currentPlayer = 0;
 int numOfTurns = 0;
 float radius = 12.5;
 
