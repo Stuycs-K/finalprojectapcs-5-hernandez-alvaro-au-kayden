@@ -59,6 +59,9 @@ class CueStick{
       dir.mult(strength * 10);
       ball.acceleration.add(dir);
       numOfTurns++;
+      
+      // make the cue ball not scratched
+      ball.scratched = false;
     }
   }
 }
