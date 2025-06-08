@@ -39,7 +39,7 @@ class Table {
     float startX = (width / 2) - 40;
     float startY = height * 0.3;
     
-    cueBall = new Ball(startX, 700.0, 0, 0, radius, 0, color(255), pockets);
+    cueBall = new Ball(startX, 750.0, 0, 0, radius, 0, color(255), pockets);
     ballList.add(cueBall);
     stick = new CueStick(cueBall);
     
@@ -217,6 +217,7 @@ class Table {
                strOrSol.add("solids");
              }
            }
+           assignedCate = true;
          }
          
          // decrement the value of the category that the ball belongs to 
