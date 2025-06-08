@@ -242,21 +242,42 @@ class Table {
       if (!ballsMoving()) {
         if (shotTaken && waitForTurnChange) {
           boolean keepTurn = false;
+          boolean foul = false;
           
           // if not turn 1
           if (strOrSol.size() != 0) {
             
-            // determine the type of ball
-            String type = strOrSol.get(currentPlayer);
-            
-            // if the type is the same, and the size changed keep the turn
-            if (type.equals("stripes") && stripes < stripeVal) {
-              keepTurn = true;
+            // if there is no hit, change bool, foul has been committed
+            if (firstHit == null) {
+               foul = true; 
             }
             
-            // same thing for solids
-            else if (type.equals("solids") && solids < solidVal) {
-               keepTurn = true; 
+            // otherwise keep going
+            else {            
+              // determine the type of ball
+              String type = strOrSol.get(currentPlayer);
+              
+              // FOUL DETECTION, HTITING OTHER CATEGORY BALL FIRST
+             
+              // the cue ball hits the other category first, this is not allowed
+              if (type.equals("stripes") && !firstHit.striped) {
+                foul = true;
+              }
+              
+              // same thing for solids
+              else if (type.equals("solids") && firstHit.striped) {
+                 foul = true;
+              }
+              
+              // otherwise, if no foul has been committed, check the number of solids n stripes to see if the turn is kept
+              else if (!foul) {
+                if (type.equals("stripes") && stripes < stripeVal) {
+                 keepTurn = true; 
+                }
+                if (type.equals("solids") && solids < solidVal) {
+                 keepTurn = true; 
+                }
+              }
             }
           }
           
@@ -268,10 +289,16 @@ class Table {
              }
             }
             
+            // if foul has occurred, other player goes
+            if (foul) {
+             keepTurn = false; 
+             cueBall.scratched = true;
+            }
            // if we are not keeping the turn
            if (!keepTurn) {
              // switch players
              currentPlayer = (currentPlayer + 1) % 2;
+             cueBall.scratched = true;
            }
            // reset globals
            shotTaken = false;
