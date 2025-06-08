@@ -81,8 +81,16 @@ class Ball {
   }
   
   public boolean inPocket() {
-    for (PVector p : pockets) {
-      if (p.dist(position) < 18) {      // if the distance between them is less than the pocket radius     
+    for (int i = 0; i < 4; i++) {
+      if (pockets.get(i).dist(position) < 69-20) {      // if the distance between them is less than the pocket radius     
+        inPocket = true;
+        velocity = new PVector(0, 0);
+        acceleration = new PVector(0, 0);
+        return true;
+      }
+    }
+    for (int i = 4; i < 6; i++) {
+      if (pockets.get(i).dist(position) < 30) {      // if the distance between them is less than the pocket radius     
         inPocket = true;
         velocity = new PVector(0, 0);
         acceleration = new PVector(0, 0);
@@ -105,6 +113,7 @@ class Ball {
         }
       }
       if (shouldBounce){
+        //here is the code
         if (position.x < 56 + radius)
           velocity.x = abs(velocity.x * 0.85);
         if (position.x > width - (133 + radius))
