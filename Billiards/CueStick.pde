@@ -109,5 +109,26 @@ class CueStick{
         
       tracer = nextPos.copy();
     }
+    for (int i = 0; i < dashes.size() - 1; i+=2) {
+      PVector p1 = dashes.get(i);
+      PVector p2 = dashes.get(i + 1);
+      
+      stroke(255,0,0);
+      strokeWeight(1);
+      line(p1.x, p1.y, p2.x, p2.y);
+      
+    }
+    noStroke();
+    if (colliding){
+      if (hit.number == 8)
+       fill(255, 0, 0);
+      else
+        fill(0, 255, 0);
+      circle(tracer.x, tracer.y, 8);
+    }
+    else{
+      fill(255,255,255);
+      circle(tracer.x, tracer.y, 8);
+    }
   }
 }
