@@ -135,8 +135,16 @@ class CueStick{
       
     }
     noStroke();
+    boolean ballShouldBeStriped = false;
+    if (strOrSol.size() > 1){
+      String type = strOrSol.get(currentPlayer);
+      if (type.equals("stripes"))
+        ballShouldBeStriped = true;
+      else
+        ballShouldBeStriped = false;
+    }
     if (colliding){
-      if (hit.number == 8)
+      if (hit.number == 8 || ((strOrSol.size() > 1) && (ballShouldBeStriped != hit.striped)))
        fill(255, 0, 0);
       else
         fill(0, 255, 0);
