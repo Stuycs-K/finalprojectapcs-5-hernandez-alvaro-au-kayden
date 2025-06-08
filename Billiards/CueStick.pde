@@ -52,6 +52,7 @@ class CueStick{
       x-w4*b-lengthOfStick*a-h2*a-h3*a,  y+w4*a-lengthOfStick*b-h2*b-h3*b,
       x+w4*b-lengthOfStick*a-h2*a-h3*a,  y-w4*a-lengthOfStick*b-h2*b-h3*b);
     circle(x-lengthOfStick*a-h2*a-h3*a, y-lengthOfStick*b-h2*b-h3*b, 24);
+    showTracer();
   }
 
   public void strike(){
@@ -62,6 +63,32 @@ class CueStick{
       
       // make the cue ball not scratched
       ball.scratched = false;
+    }
+  }
+  
+  public void showTracer() {
+    PVector tracer = ball.position.copy();
+    PVector dirNormal = dir.copy().normalize();
+    
+    ArrayList<PVector> dashes = new ArrayList<PVector>();
+    dashes.add(tracer.copy());
+    float stepSize = 40;
+    float maxDistance = 1500;
+    float totalDistance = 0;
+    float wallBounces = 0;
+    
+    boolean colliding = false;
+    while (totalDistance < 1500 || !colliding || wallBounces < 3){
+      PVector nextPos = PVector.add(tracer, PVector.mult(dirNormal, stepSize));
+      totalDistance += stepSize;
+      
+      for (Ball b: t1.ballList){
+        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position)> radius){
+          colliding = true;
+          tracer = nextPos.copy();
+          dashes.add(tracer.copy());
+        }
+      }
     }
   }
 }
