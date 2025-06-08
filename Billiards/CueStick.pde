@@ -66,47 +66,59 @@ class CueStick{
     }
   }
   
-  public void showTracer() {
+  public void showTracer() { //might add side lasers later
     PVector tracer = ball.position.copy();
     PVector dirNormal = dir.copy().normalize();
+    tracer.x+=dirNormal.x * radius;
+    tracer.y+=dirNormal.y * radius;
     
     ArrayList<PVector> dashes = new ArrayList<PVector>();
     dashes.add(tracer.copy());
-    float stepSize = 40;
+    float stepSize = 1;
     float maxDistance = 1500;
     float totalDistance = 0;
-    float wallBounces = 0;
+    int wallBounces = 0;
     Ball hit = null;
-    
+
     boolean colliding = false;
-    while (totalDistance < maxDistance || !colliding || wallBounces < 3){
+    
+    int dashLength = 6;
+    int gapLength = 4;
+    int temp = 30;
+    while (totalDistance < maxDistance && !colliding && wallBounces < 3 && temp > 0){
       PVector nextPos = PVector.add(tracer, PVector.mult(dirNormal, stepSize));
       totalDistance += stepSize;
       
       for (Ball b: t1.ballList){
-        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position)> radius && !colliding){
+        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position) <= radius && !colliding){
           colliding = true;
           tracer = nextPos.copy();
           dashes.add(tracer.copy());
           hit = b;
         }
       }
-      
-      if (nextPos.x < 56 || nextPos.x > 56+400){
+
+      if ((nextPos.x < 36+35 && nextPos.y < 36+35) || (nextPos.x > 476-35 && nextPos.y < 36+35) || (nextPos.x < 36+35 && nextPos.y > 876-35) || (nextPos.x > 476-35 && nextPos.y > 876-35) || (nextPos.x < 56 && nextPos.y > 476-35 && nextPos.y < 476) || (nextPos.x > 56+400 && nextPos.y > 476-35 && nextPos.y < 476)){
+          temp--;
+          dashes.add(tracer.copy());
+      }
+           
+      else if (nextPos.x < 56 || nextPos.x > 56+400){
         dirNormal.x *= -1;
         wallBounces++;
         dashes.add(tracer.copy());
       }
       
-      if (nextPos.y < 56 || nextPos.y > 56+800){
+      else if (nextPos.y < 56 || nextPos.y > 56+800){
         dirNormal.y *= -1;
         wallBounces++;
         dashes.add(tracer.copy());
       }
       
-      if ((int)totalDistance % ((int) (2*stepSize)) != 0)
-        dashes.add(nextPos.copy());
-        
+    if ((int)totalDistance % (int)(dashLength + gapLength) == 0) {
+      dashes.add(nextPos.copy());
+    }
+      
       tracer = nextPos.copy();
     }
     for (int i = 0; i < dashes.size() - 1; i+=2) {
