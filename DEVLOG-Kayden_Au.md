@@ -54,3 +54,8 @@ About 40 minutes.
 Working on a turn based system, also changed the moving cue ball mechanism to work properly.
 
 About 1 hour. 
+
+## 2025-6-08
+Long working session on turn based system, scratch detection, detecting the categories of balls, fouls, etc...
+
+About 2 - 3 hours.
