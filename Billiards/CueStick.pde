@@ -76,19 +76,38 @@ class CueStick{
     float maxDistance = 1500;
     float totalDistance = 0;
     float wallBounces = 0;
+    Ball hit = null;
     
     boolean colliding = false;
-    while (totalDistance < 1500 || !colliding || wallBounces < 3){
+    while (totalDistance < maxDistance || !colliding || wallBounces < 3){
       PVector nextPos = PVector.add(tracer, PVector.mult(dirNormal, stepSize));
       totalDistance += stepSize;
       
       for (Ball b: t1.ballList){
-        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position)> radius){
+        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position)> radius && !colliding){
           colliding = true;
           tracer = nextPos.copy();
           dashes.add(tracer.copy());
+          hit = b;
         }
       }
+      
+      if (nextPos.x < 56 || nextPos.x > 56+400){
+        dirNormal.x *= -1;
+        wallBounces++;
+        dashes.add(tracer.copy());
+      }
+      
+      if (nextPos.y < 56 || nextPos.y > 56+800){
+        dirNormal.y *= -1;
+        wallBounces++;
+        dashes.add(tracer.copy());
+      }
+      
+      if ((int)totalDistance % ((int) (2*stepSize)) != 0)
+        dashes.add(nextPos.copy());
+        
+      tracer = nextPos.copy();
     }
   }
 }
