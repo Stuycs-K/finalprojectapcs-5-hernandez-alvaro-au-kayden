@@ -6,6 +6,7 @@ class Ball {
   boolean inPocket;
   boolean striped;
   ArrayList<PVector> pockets;
+  boolean isCue;
   boolean eightball;
   boolean scratched;
 
@@ -18,7 +19,10 @@ class Ball {
     this.c = c;
     inPocket = false;
     pockets = pocketCoords;
-
+    
+    if (num == 0) {
+       isCue = true; 
+    }
     if (num >= 9 && num <= 15) {
       striped = true;
     }
@@ -126,16 +130,29 @@ class Ball {
     }
   }
 
-  public void collide(ArrayList<Ball> list) {
+  public void collide(ArrayList<Ball> list, Table t) {
     // loop through the ball list
     for (Ball b : list) {
-      collideHelper(b);
+      if (b != this) {
+        collideHelper(b, t);
+      }
     }
   }
 
-  private void collideHelper(Ball other) {
+  private void collideHelper(Ball other, Table t) {
     float distance = PVector.dist(this.position, other.position);
     if (distance < radius * 2 && distance > 0) {
+      
+      // DETECTION FOR WHICH BALL IS THE FIRST HIT
+      
+      // if this is the cue ball, and there has not been a first ball hit yet 
+      if (this.isCue && t.firstHit == null) {
+        
+        // if the other ball is NOT in the pocket
+        if (!other.inPocket) {
+         t.firstHit = other;  
+        }
+      }
       
       // find the direction of the new vector
       PVector normal = PVector.sub(this.position, other.position);
