@@ -272,10 +272,12 @@ class Table {
               // otherwise, if no foul has been committed, check the number of solids n stripes to see if the turn is kept
               else if (!foul) {
                 if (type.equals("stripes") && stripes < stripeVal) {
-                 keepTurn = true; 
+                 keepTurn = true;
+                 cueBall.scratched = false;
                 }
                 if (type.equals("solids") && solids < solidVal) {
                  keepTurn = true; 
+                 cueBall.scratched = false;
                 }
               }
             }
@@ -283,9 +285,13 @@ class Table {
           
           // otherwise we are on turn 1
           else {
+            if (firstHit == null) {
+               foul = true; 
+            }
             // if a ball has been pocketed, keep the turn)
             if (stripes != stripeVal || solids != solidVal) {
               keepTurn = true;
+              cueBall.scratched = false;
              }
             }
             
@@ -294,11 +300,11 @@ class Table {
              keepTurn = false; 
              cueBall.scratched = true;
             }
+            
            // if we are not keeping the turn
            if (!keepTurn) {
              // switch players
              currentPlayer = (currentPlayer + 1) % 2;
-             cueBall.scratched = true;
            }
            // reset globals
            shotTaken = false;
