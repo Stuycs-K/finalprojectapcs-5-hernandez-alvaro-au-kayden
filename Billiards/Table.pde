@@ -9,6 +9,7 @@ class Table {
   Ball cueBall;
   Ball eightBall;
   CueStick stick;
+  Ball firstHit;
   
   public Table(int w, int l) {
     width = w;
@@ -39,7 +40,7 @@ class Table {
     float startX = (width / 2) - 40;
     float startY = height * 0.3;
     
-    cueBall = new Ball(startX, 700.0, 0, 0, radius, 0, color(255), pockets);
+    cueBall = new Ball(startX, 750.0, 0, 0, radius, 0, color(255), pockets);
     ballList.add(cueBall);
     stick = new CueStick(cueBall);
     
@@ -137,7 +138,7 @@ class Table {
       for(int i = 100; i < 800; i+=100){
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
-      }
+      } //<>//
     } //<>// //<>//
     
     fill(2, 48, 32);
@@ -178,7 +179,7 @@ class Table {
       // update collisions
       for (Ball b : ballList) {
         if(!cueBall.scratched)
-          b.collide(ballList); 
+          b.collide(ballList, this); 
       }
     }
       
@@ -194,16 +195,30 @@ class Table {
          
          // if the players have not received categories yet
          if (strOrSol.size() == 0) {
-           // if it is striped, make the index of the playernumber striped 
+           
+           // if the ball is striped, make index of the player striped 
            if (b.striped) {
-             strOrSol.add(currentPlayer, "striped");
-             strOrSol.add(currentPlayer + 1 % 2, "solids");
+             // if it starts at zero, add striped first
+             if (currentPlayer == 0) {
+               strOrSol.add("stripes");
+               strOrSol.add("solids");
+             }
+             else {
+               strOrSol.add("solids");
+               strOrSol.add("stripes");
+             }
            }
-           // otherwise do the opposite
            else {
-             strOrSol.add(currentPlayer, "solid");
-             strOrSol.add(currentPlayer + 1 % 2, "stripes");
+             if (currentPlayer == 0) {
+               strOrSol.add("solids");
+               strOrSol.add("stripes");
+             }
+             else {
+               strOrSol.add("stripes");
+               strOrSol.add("solids");
+             }
            }
+           assignedCate = true;
          }
          
          // decrement the value of the category that the ball belongs to 
@@ -223,30 +238,82 @@ class Table {
     
     // when does the stick appear
     if (cueBall.velocity.mag() < 0.01){
+      
       if (!ballsMoving()) {
-        stick.show();
-        
-        // if it is not the first turn
-        if (strOrSol.size() != 0) {
+        if (shotTaken && waitForTurnChange) {
+          boolean keepTurn = false;
+          boolean foul = false;
           
-          // determine the type
-          String type = strOrSol.get(currentPlayer);
-          
-          // if we are on stripes now
-          if (type.equals("stripes")) {
-             // if the size is the same as before, next turn
-             if (stripes == stripeVal) {
-               currentPlayer = (currentPlayer + 1) % 2;
-               System.out.println("Player: " + currentPlayer);
-             }
-          }
-          else if (type.equals("solids")) {
-            if (solids == solidVal) {
-               currentPlayer =  (currentPlayer + 1) % 2;
-               System.out.println("Player: " + currentPlayer);
+          // if not turn 1
+          if (strOrSol.size() != 0) {
+            
+            // if there is no hit, change bool, foul has been committed
+            if (firstHit == null) {
+               foul = true; 
+            }
+            
+            // otherwise keep going
+            else {            
+              // determine the type of ball
+              String type = strOrSol.get(currentPlayer);
+              
+              // FOUL DETECTION, HTITING OTHER CATEGORY BALL FIRST
+             
+              // the cue ball hits the other category first, this is not allowed
+              if (type.equals("stripes") && !firstHit.striped) {
+                foul = true;
+              }
+              
+              // same thing for solids
+              else if (type.equals("solids") && firstHit.striped) {
+                 foul = true;
+              }
+              
+              // otherwise, if no foul has been committed, check the number of solids n stripes to see if the turn is kept
+              else if (!foul) {
+                if (type.equals("stripes") && stripes < stripeVal) {
+                 keepTurn = true;
+                 cueBall.scratched = false;
+                }
+                if (type.equals("solids") && solids < solidVal) {
+                 keepTurn = true; 
+                 cueBall.scratched = false;
+                }
+              }
             }
           }
-        }
+          
+          // otherwise we are on turn 1
+          else {
+            if (firstHit == null) {
+               foul = true; 
+            }
+            // if a ball has been pocketed, keep the turn)
+            if (stripes != stripeVal || solids != solidVal) {
+              keepTurn = true;
+              cueBall.scratched = false;
+             }
+            }
+            
+            // if foul has occurred, other player goes
+            if (foul) {
+             keepTurn = false; 
+             cueBall.scratched = true;
+            }
+            
+           // if we are not keeping the turn
+           if (!keepTurn) {
+             // switch players
+             currentPlayer = (currentPlayer + 1) % 2;
+           }
+           // reset globals
+           shotTaken = false;
+           waitForTurnChange = false;
+         }  
+      }
+      // show the stick if not been hit yet
+      if (!shotTaken) {
+        stick.show();
       }
     }
     cueBall.update(steps);

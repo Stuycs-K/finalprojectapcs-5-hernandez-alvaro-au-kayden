@@ -1,6 +1,7 @@
 Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
+boolean tracerToggle = true;
 boolean gameOver = false;
 boolean winner = false;
 
@@ -8,12 +9,14 @@ boolean winner = false;
 int currentPlayer = 0;
 boolean shotTaken = false;
 boolean waitForTurnChange = false;
+boolean assignedCate = false;
 
 // trakcing stripes or solid
 ArrayList<String> strOrSol = new ArrayList<String>(2);
 
 int numOfTurns = 0;
 float radius = 12.5;
+
 
 
 //playable table is 400x800
@@ -35,6 +38,11 @@ void keyPressed() {
   }
   if (key == 'q')
     t1 = new Table(width, height);
+    
+  // toggle tracer
+  if (key == 't')
+    tracerToggle = !tracerToggle;
+    
 }
 
 void mouseDragged() 
@@ -42,6 +50,10 @@ void mouseDragged()
   if (t1.cueBall.inPocket || (t1.cueBall.velocity.mag() < 0.1 && t1.cueBall.scratched)) {
     t1.cueBall.position.x = mouseX+0.0001;
     t1.cueBall.position.y = mouseY+0.0001;
+    
+    // reset globals
+    shotTaken = false;
+    waitForTurnChange = false;
   }
 }
 
@@ -51,6 +63,17 @@ void draw() {
     for (PVector p : t1.pockets) {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
+    }
+    
+    fill(0);
+    textSize(15);
+    text("\n\n\n\n\n Player: " + (currentPlayer + 1), 552, 50);
+    
+    fill(0);
+    if (assignedCate) {
+      textSize(15);
+      text("P1: " + (strOrSol.get(0)), 552, 120);
+      text("P2: " + (strOrSol.get(1)), 552, 140);
     }
     
     // testing, works so far
@@ -69,11 +92,19 @@ void draw() {
       }
     }
     
+    // if the cue ball is scratched 
+    if (t1.cueBall.scratched) {
+       fill(255, 0, 0);
+       textAlign(CENTER, CENTER);
+       textSize(20);
+       text("SCRATCH", width / 2 - 40, 456.0);
+    }
+    
     // when the cue ball is pocketed, spawn a new one at center
-    if (t1.cueBall.inPocket) {
+    if (t1.cueBall.inPocket &&  !waitForTurnChange) {
       
       // new cue ball
-      Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
+      Ball cueBall = new Ball(width / 2 - 40, 456.0, 0, 0, radius, 0, color(255), t1.pockets);
       t1.ballList.add(cueBall);
       t1.cueBall = cueBall;
       t1.cueBall.scratched = true;
@@ -85,6 +116,8 @@ void draw() {
       // make a new strength bar
       t1.strengthB = new StrengthBar(newStick);
     }
+    
+
     
     // if 8 ball goes in you lose
     
