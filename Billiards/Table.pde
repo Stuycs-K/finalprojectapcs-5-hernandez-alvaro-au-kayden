@@ -138,7 +138,7 @@ class Table {
       for(int i = 100; i < 800; i+=100){
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
-      } //<>//
+      } //<>// //<>//
     } //<>// //<>//
     
     fill(2, 48, 32);
@@ -312,7 +312,7 @@ class Table {
          }  
       }
       // show the stick if not been hit yet
-      if (!shotTaken) {
+      if (!shotTaken && !waitForTurnChange) {
         stick.show();
       }
     }
