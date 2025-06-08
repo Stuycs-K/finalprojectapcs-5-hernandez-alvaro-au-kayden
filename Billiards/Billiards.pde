@@ -1,6 +1,7 @@
 Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
+boolean tracerToggle = true;
 boolean gameOver = false;
 boolean winner = false;
 
@@ -8,12 +9,14 @@ boolean winner = false;
 int currentPlayer = 0;
 boolean shotTaken = false;
 boolean waitForTurnChange = false;
+boolean assignedCate = false;
 
 // trakcing stripes or solid
 ArrayList<String> strOrSol = new ArrayList<String>(2);
 
 int numOfTurns = 0;
 float radius = 12.5;
+
 
 
 //playable table is 400x800
@@ -35,6 +38,11 @@ void keyPressed() {
   }
   if (key == 'q')
     t1 = new Table(width, height);
+    
+  // toggle tracer
+  if (key == 't')
+    tracerToggle = !tracerToggle;
+    
 }
 
 void mouseDragged() 
@@ -60,6 +68,13 @@ void draw() {
     fill(0);
     textSize(15);
     text("\n\n\n\n\n Player: " + (currentPlayer + 1), 552, 50);
+    
+    fill(0);
+    if (assignedCate) {
+      textSize(15);
+      text("P1: " + (strOrSol.get(0)), 552, 120);
+      text("P2: " + (strOrSol.get(1)), 552, 140);
+    }
     
     // testing, works so far
     //System.out.println(strOrSol.toString());
