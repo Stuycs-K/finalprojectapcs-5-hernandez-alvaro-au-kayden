@@ -138,7 +138,7 @@ class Table {
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
       }
-    } //<>// //<>//
+    } //<>// //<>// //<>//
     
     fill(2, 48, 32);
     float xPock = 36;
@@ -223,30 +223,49 @@ class Table {
     
     // when does the stick appear
     if (cueBall.velocity.mag() < 0.01){
+      
       if (!ballsMoving()) {
-        stick.show();
-        
-        // if it is not the first turn
-        if (strOrSol.size() != 0) {
+        if (shotTaken && waitForTurnChange) {
+          boolean keepTurn = false;
           
-          // determine the type
-          String type = strOrSol.get(currentPlayer);
-          
-          // if we are on stripes now
-          if (type.equals("stripes")) {
-             // if the size is the same as before, next turn
-             if (stripes == stripeVal) {
-               currentPlayer = (currentPlayer + 1) % 2;
-               System.out.println("Player: " + currentPlayer);
-             }
-          }
-          else if (type.equals("solids")) {
-            if (solids == solidVal) {
-               currentPlayer =  (currentPlayer + 1) % 2;
-               System.out.println("Player: " + currentPlayer);
+          // if not turn 1
+          if (strOrSol.size() != 0) {
+            
+            // determine the type of ball
+            String type = strOrSol.get(currentPlayer);
+            
+            // if the type is the same, and the size changed keep the turn
+            if (type.equals("stripes") && stripes < stripeVal) {
+              keepTurn = true;
+            }
+            
+            // same thing for solids
+            else if (type.equals("solids") && solids < solidVal) {
+               keepTurn = true; 
             }
           }
-        }
+          
+          // otherwise we are on turn 1
+          else {
+            // if a ball has been pocketed, keep the turn)
+            if (stripes != stripeVal || solids != solidVal) {
+              keepTurn = true;
+             }
+            }
+            
+           // if we are not keeping the turn
+           if (!keepTurn) {
+             // switch players
+             currentPlayer = (currentPlayer + 1) % 2;
+           }
+           // reset globals
+           shotTaken = false;
+           waitForTurnChange = false;
+         }  
+      }
+      // show the stick if not been hit yet
+      if (!shotTaken) {
+        stick.show();
       }
     }
     cueBall.update(steps);
