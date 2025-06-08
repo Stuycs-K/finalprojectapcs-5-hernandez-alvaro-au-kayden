@@ -2,6 +2,7 @@ class CueStick{
  int strength;
  float x, y;
  PVector dir;
+ boolean ballShouldBeStriped = false;
  Ball ball; //need t0 make this a cueball eventually
 
  public CueStick(Ball cue) {
@@ -135,13 +136,10 @@ class CueStick{
       
     }
     noStroke();
-    boolean ballShouldBeStriped = false;
     if (strOrSol.size() > 1){
       String type = strOrSol.get(currentPlayer);
       if (type.equals("stripes"))
         ballShouldBeStriped = true;
-      else
-        ballShouldBeStriped = false;
     }
     if (colliding){
       if (hit.number == 8 || ((strOrSol.size() > 1) && (ballShouldBeStriped != hit.striped)))

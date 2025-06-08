@@ -36,7 +36,7 @@ void keyPressed() {
   if (key == ' '){
    t1.stick.strength=t1.stick.strength % 6 + 1; 
   }
-  if (key == 'q')
+  if (key == 'q') 
     t1 = new Table(width, height);
     
   // toggle tracer
@@ -64,6 +64,12 @@ void draw() {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
     }
+    
+    // direction for toggling tracer
+    fill(0);
+    textSize(15);
+    text("'t' = Tracer", 552, 32);
+    
     
     fill(0);
     textSize(15);
