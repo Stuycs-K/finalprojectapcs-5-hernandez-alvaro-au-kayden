@@ -42,6 +42,10 @@ void mouseDragged()
   if (t1.cueBall.inPocket || (t1.cueBall.velocity.mag() < 0.1 && t1.cueBall.scratched)) {
     t1.cueBall.position.x = mouseX+0.0001;
     t1.cueBall.position.y = mouseY+0.0001;
+    
+    // reset globals
+    shotTaken = false;
+    waitForTurnChange = false;
   }
 }
 
@@ -52,6 +56,10 @@ void draw() {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
     }
+    
+    fill(0);
+    textSize(15);
+    text("\n\n\n\n\n Player: " + (currentPlayer + 1), 552, 50);
     
     // testing, works so far
     //System.out.println(strOrSol.toString());
