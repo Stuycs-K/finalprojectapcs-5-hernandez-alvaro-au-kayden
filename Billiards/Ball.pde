@@ -81,8 +81,16 @@ class Ball {
   }
   
   public boolean inPocket() {
-    for (PVector p : pockets) {
-      if (p.dist(position) < 18) {      // if the distance between them is less than the pocket radius     
+    for (int i = 0; i < 4; i++) {
+      if (pockets.get(i).dist(position) < 40) {      // if the distance between them is less than the pocket radius     
+        inPocket = true;
+        velocity = new PVector(0, 0);
+        acceleration = new PVector(0, 0);
+        return true;
+      }
+    }
+    for (int i = 4; i < 6; i++) {
+      if (pockets.get(i).dist(position) < 12.5) {      // if the distance between them is less than the pocket radius     
         inPocket = true;
         velocity = new PVector(0, 0);
         acceleration = new PVector(0, 0);
@@ -97,21 +105,27 @@ class Ball {
     // ONLY BOUNCE IF NOT IN POCKET
     if (!inPocket()) {
       // 56 is the length of the brown and dark green area and + radius makes it not hit the center 
-      boolean shouldBounce = false;
-      for (int i = 0; i < 2 * PI; i += PI/2){
-        color pixelColor = get((int) (position.x+radius*cos(i)), (int) (position.y+radius*sin(i)));
-        if (green(pixelColor) == 93 || green(pixelColor) == 81){
-          shouldBounce = true;
-        }
+      boolean shouldBounce = true;
+      for (int i = 0; i < 4; i++) {
+        if (position.dist(pockets.get(i)) < 55)
+           shouldBounce = false;
+      }
+      for (int i = 4; i < 6; i++) {
+        if (position.dist(pockets.get(i)) < 12.5+23)
+           shouldBounce = false;
       }
       if (shouldBounce){
-        if (position.x < 56 + radius)
+        //here is the code
+        if ((position.x < 72 && position.y < 36) || (position.x<36 && position.y < 72)){
+          velocity.x = velocity.x * sin(90);
+        }
+        else if (position.x < 56 + radius)
           velocity.x = abs(velocity.x * 0.85);
-        if (position.x > width - (133 + radius))
+        else if (position.x > width - (133 + radius))
           velocity.x= -1 * abs(velocity.x * 0.85);
-        if (position.y < 56 + radius)
+        else if (position.y < 56 + radius)
           velocity.y = abs(velocity.y * 0.85);
-        if (position.y > height - (56 + radius))
+        else if (position.y > height - (56 + radius))
           velocity.y= -1 * abs(velocity.y * 0.85);
       }
     }
