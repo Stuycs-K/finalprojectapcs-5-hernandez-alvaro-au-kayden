@@ -3,6 +3,13 @@ int distanceCueToStick = 40;
 int lengthOfStick = 12;
 boolean gameOver = false;
 boolean winner = false;
+
+// turn based movement
+int currentPlayer = 0;
+
+// trakcing stripes or solid
+ArrayList<String> strOrSol = new ArrayList<String>(2);
+
 int numOfTurns = 0;
 float radius = 12.5;
 
@@ -43,6 +50,9 @@ void draw() {
       fill(128, 0, 0);
      ellipse(p.x, p.y, 35, 35);
     }
+    
+    // testing, works so far
+    //System.out.println(strOrSol.toString());
 
     if(gameOver){
       fill(255);

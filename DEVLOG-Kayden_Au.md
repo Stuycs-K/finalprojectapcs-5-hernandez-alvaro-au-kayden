@@ -49,3 +49,8 @@ About 50 minutes.
 Adding rules to the game, have cueball rule done, eight ball rule needs a little editing, other than that it works. 
 
 About 40 minutes.
+
+## 2025-06-06
+Working on a turn based system, also changed the moving cue ball mechanism to work properly.
+
+About 1 hour. 

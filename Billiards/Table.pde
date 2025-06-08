@@ -2,8 +2,8 @@ class Table {
   int width, length;
   ArrayList<Ball>ballList;
   ArrayList<int[]>colorList;
-  ArrayList<Ball>stripes;
-  ArrayList<Ball>solids;
+  int stripes;
+  int solids;
   ArrayList<PVector>pockets;
   StrengthBar strengthB;
   Ball cueBall;
@@ -17,8 +17,8 @@ class Table {
     // arraylist sizes
     ballList = new ArrayList<Ball>(16);
     colorList = new ArrayList<int[]>(8);
-    stripes = new ArrayList<Ball>(7);
-    solids = new ArrayList<Ball>(7);
+    stripes = 0;
+    solids = 0;
     pockets = new ArrayList<PVector>(6);
   
     // pockets 
@@ -85,10 +85,10 @@ class Table {
         Ball b = new Ball(x, y, 0, 0, radius, number, color(c[0], c[1], c[2]), pockets);
         ballList.add(b);
         if (number >= 0 && number < 8) {
-          solids.add(b);
+          solids++;
         }
         else if (number > 8 && number <= 15) {
-          stripes.add(b);
+          stripes++;
         }
         else {
           eightBall = b;
@@ -97,6 +97,16 @@ class Table {
         
       }
     }
+  }
+  
+  public boolean ballsMoving() {
+    for (Ball b : ballList) {
+        if (b.velocity.mag() > 0.1) {
+          return true;
+        }
+        return false;
+      }
+    return false;
   }
   
   public void display() {
@@ -157,7 +167,6 @@ class Table {
     int steps = 6;
     float time = 1.0 / steps;
     
-    boolean ballsMoving = false;
     // general loop for updating the balls
     for (int i = 0; i < steps; i++) {
       
@@ -171,22 +180,39 @@ class Table {
         if(!cueBall.scratched)
           b.collide(ballList); 
       }
-      // if everything isnt moving, then display the stick
-      for (Ball b : ballList) {
-        if (b.velocity.mag() > 0) {
-          ballsMoving = true;
-        }
-        else {
-          ballsMoving = false;
-        }
-      }
     }
       
       // show the balls after the physics are all updated
       
+      int stripeVal = stripes;
+      int solidVal = solids;
+      
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
-       if (ballList.get(i).inPocket) {
+       Ball b = ballList.get(i);
+       if (b.inPocket) {
+         
+         // if the players have not received categories yet
+         if (strOrSol.size() == 0) {
+           // if it is striped, make the index of the playernumber striped 
+           if (b.striped) {
+             strOrSol.add(currentPlayer, "striped");
+             strOrSol.add(currentPlayer + 1 % 2, "solids");
+           }
+           // otherwise do the opposite
+           else {
+             strOrSol.add(currentPlayer, "solid");
+             strOrSol.add(currentPlayer + 1 % 2, "stripes");
+           }
+         }
+         
+         // decrement the value of the category that the ball belongs to 
+         if (b.striped) {
+           stripes--;
+         }
+         else {
+           solids--;
+         }
          ballList.remove(i);
        }
         
@@ -197,11 +223,34 @@ class Table {
     
     // when does the stick appear
     if (cueBall.velocity.mag() < 0.01){
-      if (!ballsMoving) {
+      if (!ballsMoving()) {
         stick.show();
+        
+        // if it is not the first turn
+        if (strOrSol.size() != 0) {
+          
+          // determine the type
+          String type = strOrSol.get(currentPlayer);
+          
+          // if we are on stripes now
+          if (type.equals("stripes")) {
+             // if the size is the same as before, next turn
+             if (stripes == stripeVal) {
+               currentPlayer = (currentPlayer + 1) % 2;
+               System.out.println("Player: " + currentPlayer);
+             }
+          }
+          else if (type.equals("solids")) {
+            if (solids == solidVal) {
+               currentPlayer =  (currentPlayer + 1) % 2;
+               System.out.println("Player: " + currentPlayer);
+            }
+          }
+        }
       }
     }
     cueBall.update(steps);
     cueBall.bounce();
+    
     }
 }
