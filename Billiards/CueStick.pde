@@ -52,7 +52,7 @@ class CueStick{
       x-w4*b-lengthOfStick*a-h2*a-h3*a,  y+w4*a-lengthOfStick*b-h2*b-h3*b,
       x+w4*b-lengthOfStick*a-h2*a-h3*a,  y-w4*a-lengthOfStick*b-h2*b-h3*b);
     circle(x-lengthOfStick*a-h2*a-h3*a, y-lengthOfStick*b-h2*b-h3*b, 24);
-    if (!shotTaken&& !waitForTurnChange) {
+    if (!shotTaken && !waitForTurnChange && tracerToggle) {
       showTracer();
     }
   }
