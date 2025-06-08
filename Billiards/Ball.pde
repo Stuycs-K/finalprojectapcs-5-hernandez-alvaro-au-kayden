@@ -151,6 +151,7 @@ class Ball {
         // if the other ball is NOT in the pocket
         if (!other.inPocket) {
          t.firstHit = other;  
+         scratched = false;
         }
       }
       
