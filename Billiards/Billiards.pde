@@ -109,6 +109,13 @@ void draw() {
       t1.strengthB = new StrengthBar(newStick);
     }
     
+    // if the cue ball is scratched 
+    if (t1.cueBall.scratched) {
+     textAlign(CENTER, CENTER);
+     textSize(20);
+     text("SCRATCH", width / 2 - 40, 456.0);
+    }
+    
     // if 8 ball goes in you lose
     
     // if the eight ball is in the pocket
