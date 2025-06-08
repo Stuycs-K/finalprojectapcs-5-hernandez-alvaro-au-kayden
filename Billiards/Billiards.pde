@@ -92,6 +92,14 @@ void draw() {
       }
     }
     
+    // if the cue ball is scratched 
+    if (t1.cueBall.scratched) {
+       fill(255, 0, 0);
+       textAlign(CENTER, CENTER);
+       textSize(20);
+       text("SCRATCH", width / 2 - 40, 456.0);
+    }
+    
     // when the cue ball is pocketed, spawn a new one at center
     if (t1.cueBall.inPocket &&  !waitForTurnChange) {
       
@@ -109,12 +117,7 @@ void draw() {
       t1.strengthB = new StrengthBar(newStick);
     }
     
-    // if the cue ball is scratched 
-    if (t1.cueBall.scratched) {
-     textAlign(CENTER, CENTER);
-     textSize(20);
-     text("SCRATCH", width / 2 - 40, 456.0);
-    }
+
     
     // if 8 ball goes in you lose
     
