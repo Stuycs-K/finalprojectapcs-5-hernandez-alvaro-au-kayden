@@ -6,6 +6,8 @@ boolean winner = false;
 
 // turn based movement
 int currentPlayer = 0;
+boolean shotTaken = false;
+boolean waitForTurnChange = false;
 
 // trakcing stripes or solid
 ArrayList<String> strOrSol = new ArrayList<String>(2);

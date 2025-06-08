@@ -63,6 +63,8 @@ class CueStick{
       
       // make the cue ball not scratched
       ball.scratched = false;
+      shotTaken = true;
+      waitForTurnChange = true;
     }
   }
   
