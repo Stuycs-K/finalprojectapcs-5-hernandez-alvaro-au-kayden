@@ -138,7 +138,7 @@ class Table {
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
       }
-    } //<>//
+    } //<>// //<>//
     
     fill(2, 48, 32);
     float xPock = 36;
@@ -177,7 +177,8 @@ class Table {
        }
       // update collisions
       for (Ball b : ballList) {
-        b.collide(ballList); 
+        if(!cueBall.scratched)
+          b.collide(ballList); 
       }
     }
       

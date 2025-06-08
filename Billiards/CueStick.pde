@@ -52,6 +52,7 @@ class CueStick{
       x-w4*b-lengthOfStick*a-h2*a-h3*a,  y+w4*a-lengthOfStick*b-h2*b-h3*b,
       x+w4*b-lengthOfStick*a-h2*a-h3*a,  y-w4*a-lengthOfStick*b-h2*b-h3*b);
     circle(x-lengthOfStick*a-h2*a-h3*a, y-lengthOfStick*b-h2*b-h3*b, 24);
+    showTracer();
   }
 
   public void strike(){
@@ -62,6 +63,84 @@ class CueStick{
       
       // make the cue ball not scratched
       ball.scratched = false;
+    }
+  }
+  
+  public void showTracer() { //might add side lasers later
+    PVector tracer = ball.position.copy();
+    PVector dirNormal = dir.copy().normalize();
+    tracer.x+=dirNormal.x * radius;
+    tracer.y+=dirNormal.y * radius;
+    
+    ArrayList<PVector> dashes = new ArrayList<PVector>();
+    dashes.add(tracer.copy());
+    float stepSize = 1;
+    float maxDistance = 1500;
+    float totalDistance = 0;
+    int wallBounces = 0;
+    Ball hit = null;
+
+    boolean colliding = false;
+    
+    int dashLength = 6;
+    int gapLength = 4;
+    int temp = 30;
+    while (totalDistance < maxDistance && !colliding && wallBounces < 3 && temp > 0){
+      PVector nextPos = PVector.add(tracer, PVector.mult(dirNormal, stepSize));
+      totalDistance += stepSize;
+      
+      for (Ball b: t1.ballList){
+        if(b != ball && !b.inPocket && PVector.dist(nextPos, b.position) <= radius && !colliding){
+          colliding = true;
+          tracer = nextPos.copy();
+          dashes.add(tracer.copy());
+          hit = b;
+        }
+      }
+
+      if ((nextPos.x < 36+35 && nextPos.y < 36+35) || (nextPos.x > 476-35 && nextPos.y < 36+35) || (nextPos.x < 36+35 && nextPos.y > 876-35) || (nextPos.x > 476-35 && nextPos.y > 876-35) || (nextPos.x < 56 && nextPos.y > 476-35 && nextPos.y < 476) || (nextPos.x > 56+400 && nextPos.y > 476-35 && nextPos.y < 476)){
+          temp--;
+          dashes.add(tracer.copy());
+      }
+           
+      else if (nextPos.x < 56 || nextPos.x > 56+400){
+        dirNormal.x *= -1;
+        wallBounces++;
+        dashes.add(tracer.copy());
+      }
+      
+      else if (nextPos.y < 56 || nextPos.y > 56+800){
+        dirNormal.y *= -1;
+        wallBounces++;
+        dashes.add(tracer.copy());
+      }
+      
+    if ((int)totalDistance % (int)(dashLength + gapLength) == 0) {
+      dashes.add(nextPos.copy());
+    }
+      
+      tracer = nextPos.copy();
+    }
+    for (int i = 0; i < dashes.size() - 1; i+=2) {
+      PVector p1 = dashes.get(i);
+      PVector p2 = dashes.get(i + 1);
+      
+      stroke(255,0,0);
+      strokeWeight(1);
+      line(p1.x, p1.y, p2.x, p2.y);
+      
+    }
+    noStroke();
+    if (colliding){
+      if (hit.number == 8)
+       fill(255, 0, 0);
+      else
+        fill(0, 255, 0);
+      circle(tracer.x, tracer.y, 8);
+    }
+    else{
+      fill(255,255,255);
+      circle(tracer.x, tracer.y, 8);
     }
   }
 }

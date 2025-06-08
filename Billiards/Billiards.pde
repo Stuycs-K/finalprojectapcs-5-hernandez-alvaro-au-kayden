@@ -38,8 +38,8 @@ void keyPressed() {
 void mouseDragged() 
 {
   if (t1.cueBall.inPocket || (t1.cueBall.velocity.mag() < 0.1 && t1.cueBall.scratched)) {
-    t1.cueBall.position.x = mouseX;
-    t1.cueBall.position.y = mouseY;
+    t1.cueBall.position.x = mouseX+0.0001;
+    t1.cueBall.position.y = mouseY+0.0001;
   }
 }
 
