@@ -70,7 +70,7 @@ void draw() {
     }
     
     // when the cue ball is pocketed, spawn a new one at center
-    if (t1.cueBall.inPocket) {
+    if (t1.cueBall.inPocket &&  !waitForTurnChange) {
       
       // new cue ball
       Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
