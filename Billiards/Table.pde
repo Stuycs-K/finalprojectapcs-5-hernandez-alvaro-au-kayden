@@ -9,6 +9,7 @@ class Table {
   Ball cueBall;
   Ball eightBall;
   CueStick stick;
+  Ball firstHit;
   
   public Table(int w, int l) {
     width = w;
@@ -137,8 +138,8 @@ class Table {
       for(int i = 100; i < 800; i+=100){
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
-      }
-    } //<>// //<>// //<>//
+      } //<>//
+    } //<>// //<>//
     
     fill(2, 48, 32);
     float xPock = 36;
@@ -178,7 +179,7 @@ class Table {
       // update collisions
       for (Ball b : ballList) {
         if(!cueBall.scratched)
-          b.collide(ballList); 
+          b.collide(ballList, this); 
       }
     }
       
