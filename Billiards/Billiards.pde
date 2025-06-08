@@ -96,7 +96,7 @@ void draw() {
     if (t1.cueBall.inPocket &&  !waitForTurnChange) {
       
       // new cue ball
-      Ball cueBall = new Ball(width / 2 - 40, 456.0,  0, 0, radius, 0, color(255), t1.pockets);
+      Ball cueBall = new Ball(width / 2 - 40, 456.0, 0, 0, radius, 0, color(255), t1.pockets);
       t1.ballList.add(cueBall);
       t1.cueBall = cueBall;
       t1.cueBall.scratched = true;
