@@ -194,15 +194,28 @@ class Table {
          
          // if the players have not received categories yet
          if (strOrSol.size() == 0) {
-           // if it is striped, make the index of the playernumber striped 
+           
+           // if the ball is striped, make index of the player striped 
            if (b.striped) {
-             strOrSol.add(currentPlayer, "striped");
-             strOrSol.add(currentPlayer + 1 % 2, "solids");
+             // if it starts at zero, add striped first
+             if (currentPlayer == 0) {
+               strOrSol.add("stripes");
+               strOrSol.add("solids");
+             }
+             else {
+               strOrSol.add("solids");
+               strOrSol.add("stripes");
+             }
            }
-           // otherwise do the opposite
            else {
-             strOrSol.add(currentPlayer, "solid");
-             strOrSol.add(currentPlayer + 1 % 2, "stripes");
+             if (currentPlayer == 0) {
+               strOrSol.add("solids");
+               strOrSol.add("stripes");
+             }
+             else {
+               strOrSol.add("stripes");
+               strOrSol.add("solids");
+             }
            }
          }
          
