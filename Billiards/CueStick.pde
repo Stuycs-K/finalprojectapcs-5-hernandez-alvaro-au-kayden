@@ -130,7 +130,18 @@ class CueStick{
       PVector p1 = dashes.get(i);
       PVector p2 = dashes.get(i + 1);
       
-      stroke(255,0,0);
+      if (hit != null && assignedCate) {
+        String playerType = strOrSol.get(currentPlayer);
+        boolean hitIsLegal = (playerType.equals("striped") && hit.striped) ||
+                             (playerType.equals("solid") && !hit.striped);
+        if (hitIsLegal) {
+          stroke(0, 255, 0);  // green
+        } else {
+          stroke(255, 0, 0);  // red
+        }
+      } else {
+        stroke(255, 0, 0);  // red if unassigned
+      }
       strokeWeight(1);
       line(p1.x, p1.y, p2.x, p2.y);
       

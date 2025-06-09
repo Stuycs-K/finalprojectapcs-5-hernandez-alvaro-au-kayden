@@ -111,6 +111,20 @@ void draw() {
     
     // when the cue ball is pocketed, spawn a new one at center
     if (t1.cueBall.inPocket &&  !waitForTurnChange) {
+    // Determine scratch due to hitting wrong ball type
+    if (!waitForTurnChange) {
+      if (t1.cueBall.inPocket) {
+        t1.cueBall.scratched = true;
+      }
+      Ball hit = t1.firstHit;
+      if (hit != null && assignedCate) {
+        String playerType = strOrSol.get(currentPlayer);
+        if ((playerType.equals("striped") && !hit.striped) ||
+            (playerType.equals("solid") && hit.striped)) {
+          t1.cueBall.scratched = true;
+        }
+      }
+    }
       
       // new cue ball
       Ball cueBall = new Ball(width / 2 - 40, 456.0, 0, 0, radius, 0, color(255), t1.pockets);
