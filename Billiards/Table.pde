@@ -101,13 +101,13 @@ class Table {
   }
   
   public boolean ballsMoving() {
+    boolean temp = false;
     for (Ball b : ballList) {
-        if (b.velocity.mag() > 0.1) {
-          return true;
+        if (b.velocity.mag() > 0.05) {
+          temp = true;
         }
-        return false;
       }
-    return false;
+    return temp;
   }
   
   public void display() {
@@ -138,7 +138,7 @@ class Table {
       for(int i = 100; i < 800; i+=100){
         if (i!= 400)
         quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
-      } //<>//
+      } //<>// //<>//
     } //<>// //<>//
     
     fill(2, 48, 32);
@@ -237,9 +237,7 @@ class Table {
       }
     
     // when does the stick appear
-    if (cueBall.velocity.mag() < 0.01){
-      
-      if (!ballsMoving()) {
+    if (!ballsMoving()){
         if (shotTaken && waitForTurnChange) {
           boolean keepTurn = false;
           boolean foul = false;
@@ -310,7 +308,6 @@ class Table {
            shotTaken = false;
            waitForTurnChange = false;
          }  
-      }
       // show the stick if not been hit yet
       if (!shotTaken) {
         stick.show();
