@@ -43,9 +43,18 @@ void keyPressed() {
   }
     
   // toggle tracer
-  if (key == 't')
+  if (key == 't') {
     tracerToggle = !tracerToggle;
-    
+  }
+   
+  if (key == '.') {
+    for (int i = 2; i < t1.ballList.size() - 1; i++) {
+      if (!t1.ballList.get(i).eightball) {
+        t1.ballList.remove(i);
+        i--;
+      }
+    }
+  }
 }
 
 void mouseDragged() 

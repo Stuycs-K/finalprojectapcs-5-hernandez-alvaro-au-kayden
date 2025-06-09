@@ -96,10 +96,12 @@ class Table {
         else {
           eightBall = b;
         }
-        number++;
-        
+        number++; 
       }
     }
+    PVector temp = ballList.get(5).position;
+    ballList.get(5).position = ballList.get(8).position;
+    ballList.get(8).position = temp;
   }
   
   public boolean ballsMoving() {
@@ -136,10 +138,10 @@ class Table {
       for(int i = 100; i < 400; i+=100)
         quad(i+51, 28+k, i+56, 22+k, i+61, 28+k, i+56, 34+k);
     }
-    for(int k = 0; k<500; k+=456){
-      for(int i = 100; i < 800; i+=100){
-        if (i!= 400) //<>//
-        quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56); //<>//
+    for(int k = 0; k<500; k+=456){ //<>//
+      for(int i = 100; i < 800; i+=100){ //<>//
+        if (i!= 400)
+        quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
       } //<>// //<>//
     } //<>// //<>//
     
