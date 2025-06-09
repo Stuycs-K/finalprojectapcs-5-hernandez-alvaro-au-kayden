@@ -13,5 +13,10 @@ Table dimensions exactly taken from Dimensions.com for a 9 foot table.
 
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
-  
+The CueStick will follow your mouse around and when you click it will strik the cue ball in that direction.
+
+You can adjust the strength using the number keys: 1-6, and the space bar.
+
+When the ball is scracthed you will see the text "Scratched" on the table and you can drag the ball to where you want.
+
+The turn system will be shown on the right along with other controls.
