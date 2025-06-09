@@ -54,6 +54,8 @@ void keyPressed() {
         i--;
       }
     }
+    strOrSol.add("stripes");
+    strOrSol.add("solids");
   }
 }
 
@@ -137,7 +139,7 @@ void draw() {
       
       // new cue ball
       Ball cueBall = new Ball(width / 2 - 40, 456.0, 0, 0, radius, 0, color(255), t1.pockets);
-      t1.ballList.add(cueBall);
+      t1.ballList.set(0, cueBall);
       t1.cueBall = cueBall;
       t1.cueBall.scratched = true;
       
@@ -160,7 +162,7 @@ void draw() {
       if (! (t1.ballList.size() == 1)) {
         textAlign(CENTER, CENTER);
         textSize(100);
-        text("YOU LOSE!", width / 2 - 40, 456.0);
+        text("GAME OVER!", width / 2 - 40, 456.0);
         exit();
       }
     }
