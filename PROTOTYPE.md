@@ -59,7 +59,7 @@ Kayden will work on the physics behind the game.
 ### Bring the game together -- To be done by Wednesday, June 4th
 - [x] Make sure the game reacts accordingly to which ball has been pocketed--if it is the black one, instant loss; if it is the cue ball, have it reset the ball; if it is your respective teams color, give the player another turn
 - [x] Display the force level of the stick class as a vertical bar
-- [ ] Perhaps have a way to toggle the difficulty by altering the sizes of the pockets (Decided to remove this feature since instead we added the tracer to change the difficulty)
+- [x] Perhaps have a way to toggle the difficulty by altering the sizes of the pockets (Decided to remove this feature since instead we added the tracer to change the difficulty)
 - [x] Have a reset button
 - [x] Initialize the game in the correct way:
 ![image](https://github.com/user-attachments/assets/3e87d1c2-1734-445a-89ba-500da1f44dee)
