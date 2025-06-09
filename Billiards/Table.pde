@@ -244,7 +244,7 @@ class Table {
           boolean keepTurn = false;
           boolean foul = false;
           
-          // if not turn 1
+          // player have been assigned categories
           if (assignedCate) {
             // if there is no hit, change bool, foul has been committed
             if (firstHit == null) {
@@ -268,6 +268,8 @@ class Table {
               keepTurn = false;
               cueBall.scratched = true;
             }
+            
+            // no foul, but still assigned categories
             else {
               String type = strOrSol.get(currentPlayer);
               if (type.equals("stripes") && stripes < stripeVal) {
