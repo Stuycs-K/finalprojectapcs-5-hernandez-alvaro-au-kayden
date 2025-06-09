@@ -36,8 +36,11 @@ void keyPressed() {
   if (key == ' '){
    t1.stick.strength=t1.stick.strength % 6 + 1; 
   }
-  if (key == 'q') 
+  if (key == 'q') {
     t1 = new Table(width, height);
+    currentPlayer = 0;
+    assignedCate = false;
+  }
     
   // toggle tracer
   if (key == 't')

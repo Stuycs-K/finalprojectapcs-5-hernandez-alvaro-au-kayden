@@ -191,8 +191,8 @@ class Table {
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
        Ball b = ballList.get(i);
-       if (b.inPocket) {
-         
+       if (b.inPocket && !b.isCue) {
+          assignedCate = true;
          // if the players have not received categories yet
          if (strOrSol.size() == 0) {
            
@@ -218,7 +218,7 @@ class Table {
                strOrSol.add("solids");
              }
            }
-           assignedCate = true;
+
          }
          
          // decrement the value of the category that the ball belongs to 
@@ -245,62 +245,67 @@ class Table {
           boolean foul = false;
           
           // if not turn 1
-          if (strOrSol.size() != 0) {
-            
+          if (assignedCate) {
             // if there is no hit, change bool, foul has been committed
             if (firstHit == null) {
-               foul = true; 
+               foul = true;
             }
-            
             // otherwise keep going
-            else {            
+            else {
               // determine the type of ball
               String type = strOrSol.get(currentPlayer);
-              
               // FOUL DETECTION, HTITING OTHER CATEGORY BALL FIRST
-             
               // the cue ball hits the other category first, this is not allowed
               if (type.equals("stripes") && !firstHit.striped) {
                 foul = true;
               }
-              
               // same thing for solids
               else if (type.equals("solids") && firstHit.striped) {
                  foul = true;
               }
-              
-              // otherwise, if no foul has been committed, check the number of solids n stripes to see if the turn is kept
-              else if (!foul) {
-                if (type.equals("stripes") && stripes < stripeVal) {
-                 keepTurn = true;
-                 cueBall.scratched = false;
-                }
-                if (type.equals("solids") && solids < solidVal) {
-                 keepTurn = true; 
-                 cueBall.scratched = false;
-                }
+            }
+            if (foul) {
+              keepTurn = false;
+              cueBall.scratched = true;
+            }
+            else {
+              String type = strOrSol.get(currentPlayer);
+              if (type.equals("stripes") && stripes < stripeVal) {
+                keepTurn = true;
+                cueBall.scratched = false;
+              }
+              else if (type.equals("solids") && solids < solidVal) {
+               keepTurn = true;
+               cueBall.scratched = false; 
+              }
+              else {
+                keepTurn = false;
+                cueBall.scratched = false;
               }
             }
           }
           
-          // otherwise we are on turn 1
+          // otherwise we have unassgined categories
           else {
             if (firstHit == null) {
                foul = true; 
             }
             // if a ball has been pocketed, keep the turn)
-            if (stripes != stripeVal || solids != solidVal) {
+            if (stripes < stripeVal || solids < solidVal) {
               keepTurn = true;
-              cueBall.scratched = false;
              }
-            }
-            
+             
             // if foul has occurred, other player goes
             if (foul) {
-             keepTurn = false; 
-             cueBall.scratched = true;
+              keepTurn = false; 
+              cueBall.scratched = true;
+            }
+            else {
+              cueBall.scratched = false;
             }
             
+
+          }
            // if we are not keeping the turn
            if (!keepTurn) {
              // switch players
@@ -309,10 +314,11 @@ class Table {
            // reset globals
            shotTaken = false;
            waitForTurnChange = false;
+           firstHit = null;
          }  
       }
       // show the stick if not been hit yet
-      if (!shotTaken && !waitForTurnChange) {
+      if (!shotTaken) {
         stick.show();
       }
     }
