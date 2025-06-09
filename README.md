@@ -19,6 +19,6 @@ You can adjust the strength using the number keys: 1-6, and the space bar.
 
 When the ball is scracthed you will see the text "Scratched" on the table and you can drag the ball to where you want.
 
-Some keybinds to know, "q" resets the game, make sure everything stops moving before pressing it. "t" is for toggling on and off the tracer. 
+Some keybinds to know, "q" resets the game, make sure everything stops moving before pressing it. "t" is for toggling on and off the tracer. "." is a cheat code to have only one solid and one striped ball. 
 
 The turn system will be shown on the right along with other controls.
