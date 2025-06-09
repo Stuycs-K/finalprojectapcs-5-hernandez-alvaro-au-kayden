@@ -58,7 +58,7 @@ class CueStick{
     }
   }
 
-  public void strike(){
+  public void strike(Table t1){
     if (ball.velocity.mag() < 0.01){
       dir.mult(strength * 10);
       ball.acceleration.add(dir);
@@ -67,6 +67,8 @@ class CueStick{
       // make the cue ball not scratched
       ball.scratched = false;
       shotTaken = true;
+      t1.preShotStripes = t1.stripes;
+      t1.preShotSolids = t1.solids;
       waitForTurnChange = true;
     }
   }

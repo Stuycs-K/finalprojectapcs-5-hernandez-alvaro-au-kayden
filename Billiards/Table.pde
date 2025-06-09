@@ -4,6 +4,8 @@ class Table {
   ArrayList<int[]>colorList;
   int stripes;
   int solids;
+  int preShotStripes = stripes;
+  int preShotSolids = solids;
   ArrayList<PVector>pockets;
   StrengthBar strengthB;
   Ball cueBall;
@@ -136,8 +138,8 @@ class Table {
     }
     for(int k = 0; k<500; k+=456){
       for(int i = 100; i < 800; i+=100){
-        if (i!= 400)
-        quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56);
+        if (i!= 400) //<>//
+        quad(28+k, i+51, 22+k, i+56, 28+k, i+61, 34+k, i+56); //<>//
       } //<>// //<>//
     } //<>// //<>//
     
@@ -167,7 +169,7 @@ class Table {
     // adding steps so that position is calculated multiple times, 
     int steps = 6;
     float time = 1.0 / steps;
-    
+
     // general loop for updating the balls
     for (int i = 0; i < steps; i++) {
       
@@ -185,8 +187,7 @@ class Table {
       
       // show the balls after the physics are all updated
       
-      int stripeVal = stripes;
-      int solidVal = solids;
+
       
       // remove the balls if they are in the pocket !
       for (int i = 0; i < ballList.size(); i++) {
@@ -218,7 +219,6 @@ class Table {
                strOrSol.add("solids");
              }
            }
-
          }
          
          // decrement the value of the category that the ball belongs to 
@@ -229,6 +229,7 @@ class Table {
            solids--;
          }
          ballList.remove(i);
+         i--;
        }
         
       }
@@ -270,17 +271,17 @@ class Table {
             // no foul, but still assigned categories
             else {
               String type = strOrSol.get(currentPlayer);
-              if (type.equals("stripes") && stripes < stripeVal) {
+              if (type.equals("stripes") && stripes < preShotStripes) {
                 keepTurn = true;
                 cueBall.scratched = false;
               }
-              else if (type.equals("solids") && solids < solidVal) {
+              else if (type.equals("solids") && solids < preShotSolids) {
                keepTurn = true;
                cueBall.scratched = false; 
               }
               else {
                 keepTurn = false;
-                cueBall.scratched = false;
+                cueBall.scratched = true;
               }
             }
           }
@@ -291,7 +292,7 @@ class Table {
                foul = true; 
             }
             // if a ball has been pocketed, keep the turn)
-            if (stripes < stripeVal || solids < solidVal) {
+            if (stripes < preShotStripes || solids < preShotSolids) {
               keepTurn = true;
              }
              

@@ -26,7 +26,7 @@ void setup() {
   t1 = new Table(width, height);
 }
 void mouseClicked() {
-  t1.stick.strike();
+  t1.stick.strike(t1);
 }
 
 void keyPressed() {
@@ -119,8 +119,8 @@ void draw() {
       Ball hit = t1.firstHit;
       if (hit != null && assignedCate) {
         String playerType = strOrSol.get(currentPlayer);
-        if ((playerType.equals("striped") && !hit.striped) ||
-            (playerType.equals("solid") && hit.striped)) {
+        if ((playerType.equals("stripes") && !hit.striped) ||
+            (playerType.equals("solids") && hit.striped)) {
           t1.cueBall.scratched = true;
         }
       }
