@@ -2,7 +2,6 @@ Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
 boolean tracerToggle = true;
-boolean gameOver = false;
 boolean winner = false;
 
 // turn based movement
@@ -98,19 +97,6 @@ void draw() {
     
     // testing, works so far
     //System.out.println(strOrSol.toString());
-
-    if(gameOver){
-      fill(255);
-      textAlign(CENTER);
-      textSize(80);
-      if (winner){
-        text("You Won! \n In " + numOfTurns + " turns" , width/2 - 40, 456); 
-      }
-      else{
-         text("You Lost :( \n In " + numOfTurns + " turns" , width/2 - 40, 456); 
-    t1.strengthB.display();
-      }
-    }
     
     // if the cue ball is scratched 
     if (t1.cueBall.scratched) {
@@ -157,13 +143,33 @@ void draw() {
     
     // if the eight ball is in the pocket
     if (t1.eightBall.inPocket) {
-      
-      // if there still exists balls
-      if (! (t1.ballList.size() == 1)) {
-        textAlign(CENTER, CENTER);
-        textSize(100);
-        text("GAME OVER!", width / 2 - 40, 456.0);
-        exit();
+      int numOfStripes = 0;
+      int numOfSolids = 0;
+      for (Ball b: t1.ballList){
+        if (!(b.eightball)){
+          if(b.striped){
+            numOfStripes++;
+          }
+          else
+            numOfSolids++;
+        }
       }
+      boolean win = false;
+      if (strOrSol.get(currentPlayer).equals("stripes")){
+        if (numOfStripes == 0)
+          win = true;
+      }
+      else{
+        if (numOfSolids == 0)
+          win = true;
+      }
+      
+       fill(255, 0, 0);
+       textAlign(CENTER, CENTER);
+       textSize(20);
+       if (win)
+         text("Player" + (currentPlayer + 1) + " WON!", width / 2 - 40, 456.0);
+       else
+         text("Player" + (currentPlayer + 1) + " LOST ):", width / 2 - 40, 456.0);
     }
 }
