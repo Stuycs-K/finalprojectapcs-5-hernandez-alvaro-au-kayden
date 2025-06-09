@@ -41,3 +41,6 @@ Improved pocket detection to make game easier. - 30 minutes
 
 ### 2025-06-06 - Made a tracer that bounces off walls.
 Involved mapping out the tracer points and detecting collisions with other balls and walls: the color of the tip will change depending on the collision. - 60 minutes
+
+
+I believe this document accurately reflects the contributions of my teammate. - Kayden Au :)
