@@ -20,6 +20,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 ### UML Diagram ###
 Progression of UML Diagrams: top is the most recent one in which we add a couple classes.
+![Final UML](uml5.png)
 ![Fourth UML](uml4.png)
 ![Third UML](uml3.png)
 ![Second UML](uml2.png)
