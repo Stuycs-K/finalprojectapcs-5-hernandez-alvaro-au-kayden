@@ -257,7 +257,8 @@ class Table {
               String type = strOrSol.get(currentPlayer);
               // FOUL DETECTION, HTITING OTHER CATEGORY BALL FIRST
               // the cue ball hits the other category first, this is not allowed
-              if (type.equals("stripes") && !firstHit.striped) {
+              
+             if (type.equals("stripes") && !firstHit.striped) {
                 foul = true;
               }
               // same thing for solids
@@ -267,7 +268,12 @@ class Table {
             }
             if (foul) {
               keepTurn = false;
-              cueBall.scratched = true;
+              if (solids == 0 || stripes == 0 && firstHit == eightBall) {
+                cueBall.scratched = false;
+              }
+              else {
+               cueBall.scratched = true; 
+              }
             }
             
             // no foul, but still assigned categories

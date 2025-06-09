@@ -2,7 +2,7 @@ Table t1;
 int distanceCueToStick = 40;
 int lengthOfStick = 12;
 boolean tracerToggle = true;
-boolean winner = false;
+boolean gameOver = false;
 
 // turn based movement
 int currentPlayer = 0;
@@ -99,7 +99,7 @@ void draw() {
     //System.out.println(strOrSol.toString());
     
     // if the cue ball is scratched 
-    if (t1.cueBall.scratched) {
+    if (t1.cueBall.scratched && !gameOver) {
        fill(255, 0, 0);
        textAlign(CENTER, CENTER);
        textSize(20);
@@ -167,6 +167,7 @@ void draw() {
        fill(255, 0, 0);
        textAlign(CENTER, CENTER);
        textSize(20);
+       gameOver = true;
        if (win)
          text("Player" + (currentPlayer + 1) + " WON!", width / 2 - 40, 456.0);
        else
