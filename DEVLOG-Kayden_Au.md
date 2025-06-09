@@ -59,3 +59,5 @@ About 1 hour.
 Long working session on turn based system, scratch detection, detecting the categories of balls, fouls, etc...
 
 About 2 - 3 hours.
+
+I believe this document accurately reflects the contributions of my teammate. - Alvaro Hernandez (;
