@@ -73,10 +73,6 @@ void mouseDragged()
 void draw() {
     t1.strengthB.display();
     t1.display();
-    for (PVector p : t1.pockets) {
-      fill(128, 0, 0);
-     ellipse(p.x, p.y, 35, 35);
-    }
     
     // direction for toggling tracer
     fill(0);

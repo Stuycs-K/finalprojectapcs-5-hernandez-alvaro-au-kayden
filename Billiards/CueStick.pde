@@ -155,7 +155,7 @@ class CueStick{
         ballShouldBeStriped = true;
     }
     if (colliding){
-      if (hit.number == 8 || ((strOrSol.size() > 1) && (ballShouldBeStriped == hit.striped)))
+      if (hit.number == 8 || (assignedCate && !(hit.striped && ballShouldBeStriped))) 
        fill(255, 0, 0);
       else
         fill(0, 255, 0);
