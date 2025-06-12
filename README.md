@@ -22,3 +22,6 @@ When the ball is scracthed you will see the text "Scratched" on the table and yo
 Some keybinds to know, "q" resets the game, make sure everything stops moving before pressing it. "t" is for toggling on and off the tracer. "." is a cheat code to have only one solid and one striped ball. 
 
 The turn system will be shown on the right along with other controls.
+
+
+Video Demo : [Video Demo](https://drive.google.com/drive/folders/15wOi-9T14iB_XfBgRcJVN-wAbf5aZ99d?usp=sharing)
